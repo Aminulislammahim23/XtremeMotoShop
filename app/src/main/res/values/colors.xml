@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Suzuki Brand Colors -->
+    <color name="suzuki_blue">#0033A0</color>
+    <color name="suzuki_blue_dark">#002680</color>
+    <color name="suzuki_blue_light">#3366CC</color>
+
+    <!-- Background Colors -->
+    <color name="light_gray">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_gray">#E8E8E8</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Card Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_shadow">#1F000000</color>
+
+    <!-- Status Colors -->
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_orange">#FF9800</color>
+    <color name="error_red">#F44336</color>
+    <color name="info_blue">#2196F3</color>
+
+    <!-- Button Colors -->
+    <color name="button_primary">#0033A0</color>
+    <color name="button_secondary">#E0E0E0</color>
+    <color name="button_pressed">#002680</color>
+
+    <!-- Icon Tint Colors -->
+    <color name="icon_tint">#616161</color>
+    <color name="icon_active">#0033A0</color>
+    <color name="icon_inactive">#BDBDBD</color>
+
+    <!-- Divider Colors -->
+    <color name="divider">#E0E0E0</color>
+    <color name="border">#CCCCCC</color>
+
+    <!-- Overlay Colors -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+
+    <!-- Bottom Navigation Colors -->
+    <color name="bottom_nav_selected">#0033A0</color>
+    <color name="bottom_nav_unselected">#757575</color>
+
+    <!-- Service Card Colors -->
+    <color name="service_card_bg">#FFFFFF</color>
+    <color name="service_card_border">#E8E8E8</color>
+
+    <!-- Additional Colors -->
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#424242</color>
+
+    <!-- Gradient Colors (for banners/backgrounds) -->
+    <color name="gradient_start">#0033A0</color>
+    <color name="gradient_end">#0055CC</color>
+</resources>

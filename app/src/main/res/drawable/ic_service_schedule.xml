@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M38,6
+                         L36,6
+                         L36,4
+                         C36,2.9 35.1,2 34,2
+                         C32.9,2 32,2.9 32,4
+                         L32,6
+                         L16,6
+                         L16,4
+                         C16,2.9 15.1,2 14,2
+                         C12.9,2 12,2.9 12,4
+                         L12,6
+                         L10,6
+                         C7.8,6 6,7.8 6,10
+                         L6,42
+                         C6,44.2 7.8,46 10,46
+                         L38,46
+                         C40.2,46 42,44.2 42,42
+                         L42,10
+                         C42,7.8 40.2,6 38,6
+                         Z
+                         M38,42
+                         L10,42
+                         L10,16
+                         L38,16
+                         Z"/>
+
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,20
+                         C19.6,20 16,23.6 16,28
+                         C16,32.4 19.6,36 24,36
+                         C28.4,36 32,32.4 32,28
+                         C32,23.6 28.4,20 24,20
+                         Z"/>
+
+
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M24,22
+                         C20.7,22 18,24.7 18,28
+                         C18,31.3 20.7,34 24,34
+                         C27.3,34 30,31.3 30,28
+                         C30,24.7 27.3,22 24,22
+                         Z
+                         M24,32
+                         C21.8,32 20,30.2 20,28
+                         C20,25.8 21.8,24 24,24
+                         C26.2,24 28,25.8 28,28
+                         C28,30.2 26.2,32 24,32
+                         Z"/>
+
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M25,28
+                         L25,25.5
+                         C25,25.2 24.8,25 24.5,25
+                         L23.5,25
+                         C23.2,25 23,25.2 23,25.5
+                         L23,28.5
+                         C23,28.8 23.2,29 23.5,29
+                         L26.5,29
+                         C26.8,29 27,28.8 27,28.5
+                         L27,27.5
+                         C27,27.2 26.8,27 26.5,27
+                         L25,27
+                         Z"/>
+</vector>

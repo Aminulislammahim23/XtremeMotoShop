@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M38,8
+                         L32,4
+                         L28,8
+                         L20,8
+                         L16,4
+                         L10,8
+                         L10,40
+                         C10,42.2 11.8,44 14,44
+                         L34,44
+                         C36.2,44 38,42.2 38,40
+                         Z"/>
+
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M18,16
+                         L24,12
+                         L30,16
+                         L28,24
+                         L24,28
+                         L20,24
+                         Z"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,16
+                         m-3,0
+                         a3,3 0,1 1,6 0
+                         a3,3 0,1 1,-6 0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,30
+                         L34,30
+                         L34,32
+                         L14,32
+                         Z"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,36
+                         L28,36
+                         L28,38
+                         L14,38
+                         Z"/>
+
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M32,20
+                         C32,20 36,18 38,16
+                         L42,20
+                         L40,22
+                         C38,24 36,28 36,28
+                         L32,24
+                         Z"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,22
+                         L36.5,22
+                         L36.5,23.5
+                         L35,23.5
+                         Z"/>
+</vector>
