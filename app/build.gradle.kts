@@ -43,10 +43,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.6")
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 }

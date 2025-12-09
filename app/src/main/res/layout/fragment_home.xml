@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray">
@@ -222,7 +223,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service\nSchedule"
+                        android:text="Service
+Schedule"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"
@@ -255,7 +257,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service\nPackages"
+                        android:text="Service
+Packages"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"
@@ -288,7 +291,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service\nBooking"
+                        android:text="Service
+Booking"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"
@@ -321,7 +325,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service\nHistory"
+                        android:text="Service
+History"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"
@@ -464,7 +469,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Warranty\nPolicy"
+                        android:text="Warranty
+Policy"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"
