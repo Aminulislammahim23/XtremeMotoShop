@@ -1,0 +1,54 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="150dp"
+    android:viewportWidth="200"
+    android:viewportHeight="150">
+
+    <!-- Ground -->
+    <path
+        android:fillColor="#E0F7FA"
+        android:pathData="M0,120 H200 V150 H0Z"/>
+
+    <!-- Rocks -->
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M30,120 l20,-15 l20,15z"/>
+    <path
+        android:fillColor="#3366CC"
+        android:pathData="M140,120 l-20,-20 l30,0z"/>
+    <path
+        android:fillColor="#A8D2EA"
+        android:pathData="M80,120 l10,-10 l10,10z"/>
+
+    <!-- Sun -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M150,30 A20,20 0 1,1 150,70 A20,20 0 1,1 150,30"/>
+
+    <!-- Back Wheel -->
+    <path
+        android:strokeWidth="8"
+        android:strokeColor="#212121"
+        android:pathData="M50,110 a20,20 0 1,0 -40,0 a20,20 0 1,0 40,0"/>
+
+    <!-- Front Wheel -->
+    <path
+        android:strokeWidth="8"
+        android:strokeColor="#212121"
+        android:pathData="M150,90 a25,25 0 1,0 -50,0 a25,25 0 1,0 50,0"/>
+
+    <!-- Bike Frame and Rider -->
+    <path
+        android:fillColor="#0033A0"
+        android:pathData="M55,90 L90,90 L110,60 L100,50 L80,70Z"/>
+
+    <!-- Rider's Head -->
+    <path
+        android:fillColor="#3366CC"
+        android:pathData="M100,50 a12,12 0 1,0 -24,0 a12,12 0 1,0 24,0"/>
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#212121"
+        android:pathData="M90,45 L100,45"/>
+
+</vector>

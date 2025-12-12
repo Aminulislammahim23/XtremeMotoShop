@@ -7,4 +7,7 @@
     <color name="suzuki_blue_dark">#002680</color>
     <color name="suzuki_blue_light">#3366CC</color>
     <color name="light_gray">#F5F5F5</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#D32F2F</color>
+    <color name="service_history_card_background">#E0F2F1</color>
 </resources>
