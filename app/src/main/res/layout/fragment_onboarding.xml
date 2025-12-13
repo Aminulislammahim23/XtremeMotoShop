@@ -11,10 +11,11 @@
         android:id="@+id/ivLogo"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,8 +32,8 @@
 
     <ImageView
         android:id="@+id/ivOnboardingImage"
-        android:layout_width="346dp"
-        android:layout_height="298dp"
+        android:layout_width="332dp"
+        android:layout_height="259dp"
         android:layout_margin="32dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

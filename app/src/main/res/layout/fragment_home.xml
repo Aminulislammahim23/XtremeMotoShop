@@ -15,29 +15,31 @@
         <LinearLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:background="@color/suzuki_blue"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent">
 
             <!-- Profile Image -->
+
+            <!-- User Info -->
+
             <ImageView
                 android:id="@+id/ivProfileImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_profile_placeholder"
                 android:background="@drawable/circle_background"
-                android:contentDescription="@string/profile_image" />
+                android:contentDescription="@string/profile_image"
+                android:src="@drawable/ic_profile_placeholder" />
 
-            <!-- User Info -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvUserName"
@@ -52,10 +54,10 @@
                     android:id="@+id/tvWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="Welcome"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Logout Button -->
@@ -63,9 +65,9 @@
                 android:id="@+id/btnLogout"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_logout"
                 android:background="@drawable/circle_button_background"
                 android:contentDescription="@string/logout"
+                android:src="@drawable/ic_logout"
                 android:tint="@color/suzuki_blue" />
         </LinearLayout>
 
