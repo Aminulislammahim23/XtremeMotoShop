@@ -44,12 +44,22 @@ class HomeFragment : Fragment() {
 
         val cvTestRide = view.findViewById<MaterialCardView>(R.id.cvTestRide)
         cvTestRide.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_testRideFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_bookTestRideFragment)
         }
 
         val cvServiceBooking = view.findViewById<MaterialCardView>(R.id.cvServiceBooking)
         cvServiceBooking.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_serviceBookingFragment)
+        }
+
+        val cvParts = view.findViewById<MaterialCardView>(R.id.cvParts)
+        cvParts.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_partsFragment)
+        }
+
+        val cvBikes = view.findViewById<MaterialCardView>(R.id.cvBikes)
+        cvBikes.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_bikesFragment)
         }
     }
 }

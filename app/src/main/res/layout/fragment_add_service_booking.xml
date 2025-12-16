@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/white"
     tools:context=".AddServiceBookingFragment">
 
     <ImageButton
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:backgroundTint="@color/white"
         android:padding="16dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
         android:text="FIND YOUR NEAREST DEALER"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -39,7 +42,9 @@
         android:layout_margin="16dp"
         android:drawableLeft="@drawable/ic_current_location"
         android:text="Current Location"
-        app:layout_constraintTop_toBottomOf="@id/tvFindDealer" />
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvFindDealer"
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/tvOr"
@@ -65,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:text="Select Division" />
+            android:text="Select Division"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:inputType="none"
-            android:text="Select District" />
+            android:text="Select District"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

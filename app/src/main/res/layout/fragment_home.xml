@@ -90,8 +90,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -111,48 +111,48 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="8dp">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
+                                android:contentDescription="@string/service_icon"
                                 android:src="@drawable/ic_bike_service"
-                                android:tint="@color/suzuki_blue"
-                                android:contentDescription="@string/service_icon" />
+                                android:tint="@color/suzuki_blue" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
                                 android:text="Service Checkup"
                                 android:textColor="@color/suzuki_blue"
                                 android:textSize="12sp"
-                                android:layout_marginStart="8dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="8dp">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/ic_clock"
-                                android:contentDescription="@string/time_icon" />
+                                android:contentDescription="@string/time_icon"
+                                android:src="@drawable/ic_clock" />
 
                             <TextView
                                 android:id="@+id/tvServiceDays"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
                                 android:text="In 48 days"
                                 android:textColor="@android:color/darker_gray"
-                                android:textSize="12sp"
-                                android:layout_marginStart="8dp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -160,19 +160,19 @@
                         android:id="@+id/ivBikeImage"
                         android:layout_width="120dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_bike_placeholder"
+                        android:contentDescription="@string/bike_image"
                         android:scaleType="centerCrop"
-                        android:contentDescription="@string/bike_image" />
+                        android:src="@drawable/ic_bike_placeholder" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivExpandCollapse"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_expand_more"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:contentDescription="@string/expand_collapse" />
+                    android:contentDescription="@string/expand_collapse"
+                    android:src="@drawable/ic_expand_more" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -181,22 +181,22 @@
             android:id="@+id/tvOurServiceTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Our Service"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/cvBikeService"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvBikeService" />
 
         <!-- First Row of Service Options -->
         <LinearLayout
             android:id="@+id/serviceRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="12dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             app:layout_constraintTop_toBottomOf="@id/tvOurServiceTitle">
 
@@ -204,33 +204,32 @@
                 android:id="@+id/cvServiceSchedule"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_service_schedule"
-                        android:contentDescription="@string/service_schedule" />
+                        android:contentDescription="@string/service_schedule"
+                        android:src="@drawable/ic_service_schedule" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service
-Schedule"
+                        android:layout_marginTop="8dp"
+                        android:text="Service\nSchedule"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -238,33 +237,32 @@ Schedule"
                 android:id="@+id/cvServicePackages"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_service_packages"
-                        android:contentDescription="@string/service_packages" />
+                        android:contentDescription="@string/service_packages"
+                        android:src="@drawable/ic_service_packages" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service
-Packages"
+                        android:layout_marginTop="8dp"
+                        android:text="Service\nPackages"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -272,33 +270,32 @@ Packages"
                 android:id="@+id/cvServiceBooking"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_service_booking"
-                        android:contentDescription="@string/service_booking" />
+                        android:contentDescription="@string/service_booking"
+                        android:src="@drawable/ic_service_booking" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service
-Booking"
+                        android:layout_marginTop="8dp"
+                        android:text="Service\nBooking"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -306,34 +303,32 @@ Booking"
                 android:id="@+id/cvServiceHistory"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_service_history"
-                        android:contentDescription="@string/service_history" />
+                        android:contentDescription="@string/service_history"
+                        android:src="@drawable/ic_service_history" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service
-History"
+                        android:layout_marginTop="8dp"
+                        android:text="Service\nHistory"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -343,8 +338,8 @@ History"
             android:id="@+id/serviceRow2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             app:layout_constraintTop_toBottomOf="@id/serviceRow1">
 
@@ -352,32 +347,32 @@ History"
                 android:id="@+id/cvDealers"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_dealers"
-                        android:contentDescription="@string/dealers" />
+                        android:contentDescription="@string/dealers"
+                        android:src="@drawable/ic_dealers" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="Dealers"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -385,32 +380,32 @@ History"
                 android:id="@+id/cvOffers"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_offers"
-                        android:contentDescription="@string/offers" />
+                        android:contentDescription="@string/offers"
+                        android:src="@drawable/ic_offers" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="Offers"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -418,32 +413,32 @@ History"
                 android:id="@+id/cvBikeDocs"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_bike_docs"
-                        android:contentDescription="@string/bike_docs" />
+                        android:contentDescription="@string/bike_docs"
+                        android:src="@drawable/ic_bike_docs" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bike Doc's"
+                        android:layout_marginTop="8dp"
+                        android:text="Bike Doc\'s"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -451,36 +446,148 @@ History"
                 android:id="@+id/cvWarrantyPolicy"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_margin="4dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_warranty"
-                        android:contentDescription="@string/warranty_policy" />
+                        android:contentDescription="@string/warranty_policy"
+                        android:src="@drawable/ic_warranty" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Warranty
-Policy"
+                        android:layout_marginTop="8dp"
+                        android:text="Warranty\nPolicy"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
+
+        <!-- Third Row of Service Options -->
+        <LinearLayout
+            android:id="@+id/serviceRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/serviceRow2">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvParts"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/parts"
+                        android:src="@drawable/ic_parts" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/parts"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBikes"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/bikes"
+                        android:src="@drawable/ic_bikes" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/bikes"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
 
         <!-- Test Ride Card -->
         <com.google.android.material.card.MaterialCardView
@@ -492,29 +599,29 @@ Policy"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/serviceRow2">
+            app:layout_constraintTop_toBottomOf="@id/serviceRow3">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_test_ride"
-                    android:contentDescription="@string/test_ride" />
+                    android:contentDescription="@string/test_ride"
+                    android:src="@drawable/ic_test_ride" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Test Ride"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textSize="12sp"
-                    android:layout_marginTop="8dp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -523,14 +630,14 @@ Policy"
             android:id="@+id/tvExploreTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:text="Explore"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/cvTestRide"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvTestRide" />
 
         <!-- Explore Banner 1 -->
         <com.google.android.material.card.MaterialCardView
@@ -546,9 +653,9 @@ Policy"
                 android:id="@+id/ivExploreBanner1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/banner_test_ride"
+                android:contentDescription="@string/explore_banner"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/explore_banner" />
+                android:src="@drawable/banner_test_ride" />
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Offers Section Title -->
@@ -556,14 +663,14 @@ Policy"
             android:id="@+id/tvOffersTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Offers"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/cvExploreBanner1"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvExploreBanner1" />
 
         <!-- Offers Banner -->
         <com.google.android.material.card.MaterialCardView
@@ -579,9 +686,9 @@ Policy"
                 android:id="@+id/ivOffersBanner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/banner_offers"
+                android:contentDescription="@string/offers_banner"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/offers_banner" />
+                android:src="@drawable/banner_offers" />
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Bottom Spacing -->

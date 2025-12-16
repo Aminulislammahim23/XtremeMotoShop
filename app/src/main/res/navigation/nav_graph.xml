@@ -98,6 +98,15 @@
         <action
             android:id="@+id/action_homeFragment_to_serviceBookingFragment"
             app:destination="@id/serviceBookingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookTestRideFragment"
+            app:destination="@id/bookTestRideFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_partsFragment"
+            app:destination="@id/partsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bikesFragment"
+            app:destination="@id/bikesFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -184,4 +193,18 @@
         android:name="com.example.xtrememoto.AddServiceBookingFragment"
         android:label="fragment_add_service_booking"
         tools:layout="@layout/fragment_add_service_booking" />
+    <fragment
+        android:id="@+id/bookTestRideFragment"
+        android:name="com.example.xtrememoto.BookTestRideFragment"
+        android:label="BookTestRideFragment" />
+    <fragment
+        android:id="@+id/partsFragment"
+        android:name="com.example.xtrememoto.PartsFragment"
+        android:label="fragment_parts"
+        tools:layout="@layout/fragment_parts" />
+    <fragment
+        android:id="@+id/bikesFragment"
+        android:name="com.example.xtrememoto.BikesFragment"
+        android:label="fragment_bikes"
+        tools:layout="@layout/fragment_bikes" />
 </navigation>

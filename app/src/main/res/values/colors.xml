@@ -10,4 +10,5 @@
     <color name="green">#4CAF50</color>
     <color name="red">#D32F2F</color>
     <color name="service_history_card_background">#E0F2F1</color>
+    <color name="divider">#BDBDBD</color>
 </resources>

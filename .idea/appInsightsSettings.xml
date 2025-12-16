@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.xtrememoto" />
+                  <option name="mobileSdkAppId" value="1:433763224994:android:a9f3384a10a7f7936df6fb" />
+                  <option name="projectId" value="xtreme-moto-7e38e" />
+                  <option name="projectNumber" value="433763224994" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
