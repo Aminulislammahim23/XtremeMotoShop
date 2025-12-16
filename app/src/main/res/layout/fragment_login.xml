@@ -113,28 +113,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
-        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dealer Location"
-            android:layout_marginHorizontal="16dp"/>
+            android:layout_marginHorizontal="16dp"
+            android:text="Dealer Location" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Became a partner"
-            android:layout_marginHorizontal="16dp"/>
+            android:layout_marginHorizontal="16dp"
+            android:text="Became a partner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact us"
-            android:layout_marginHorizontal="16dp"/>
+            android:layout_marginHorizontal="16dp"
+            android:text="Contact us" />
 
     </LinearLayout>
 

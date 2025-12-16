@@ -77,8 +77,9 @@
 
     <TextView
         android:id="@+id/tvSkip"
-        android:layout_width="76dp"
-        android:layout_height="58dp"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="36dp"
         android:padding="16dp"
         android:text="Skip"
@@ -88,9 +89,10 @@
 
     <ImageButton
         android:id="@+id/btnNext"
-        android:layout_width="76dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="73dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="16dp"
         android:src="@drawable/ic_arrow_forward"

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.card.MaterialCardView
@@ -48,10 +47,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_testRideFragment)
         }
 
-        val ivExpandCollapse = view.findViewById<ImageView>(R.id.ivExpandCollapse)
-        ivExpandCollapse.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_documentsFragment)
-
+        val cvServiceBooking = view.findViewById<MaterialCardView>(R.id.cvServiceBooking)
+        cvServiceBooking.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_serviceBookingFragment)
         }
     }
 }
