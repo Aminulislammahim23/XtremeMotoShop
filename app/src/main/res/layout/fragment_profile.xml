@@ -11,7 +11,7 @@
         android:id="@+id/tvProfileTitle"
         android:layout_width="158dp"
         android:layout_height="85dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Profile"
         android:textAlignment="center"
         android:textColor="@android:color/black"

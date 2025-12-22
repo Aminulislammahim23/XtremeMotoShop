@@ -10,8 +10,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,19 +27,31 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val etMobileNumber = view.findViewById<EditText>(R.id.etMobileNumber)
+        auth = FirebaseAuth.getInstance()
+
+        val etEmail = view.findViewById<EditText>(R.id.etEmail)
         val etPassword = view.findViewById<EditText>(R.id.etPassword)
         val btnLogin = view.findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            val mobileNumber = etMobileNumber.text.toString()
+            val email = etEmail.text.toString()
             val password = etPassword.text.toString()
 
-            // TODO: Replace with your actual authentication logic
-            if (isValidUser(mobileNumber, password)) {
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if (task.isSuccessful) {
+                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Authentication failed: ${task.exception?.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
             } else {
-                Toast.makeText(context, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter email and password", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -44,10 +59,5 @@ class LoginFragment : Fragment() {
         tvSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
-    }
-
-    private fun isValidUser(mobileNumber: String, password: String): Boolean {
-        // Replace this with your actual user validation logic
-        return mobileNumber.isNotEmpty() && password.isNotEmpty()
     }
 }

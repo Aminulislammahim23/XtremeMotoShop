@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "433763224994",
-    "project_id": "xtreme-moto-7e38e",
-    "storage_bucket": "xtreme-moto-7e38e.firebasestorage.app"
+    "project_number": "177177531024",
+    "project_id": "motodb-d7d5f",
+    "storage_bucket": "motodb-d7d5f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433763224994:android:a9f3384a10a7f7936df6fb",
+        "mobilesdk_app_id": "1:177177531024:android:e7196c765f5ad0e4ccbe15",
         "android_client_info": {
           "package_name": "com.example.xtrememoto"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD0rwYXmbYqegzfYA5oKKgzpj1GKAlnZmw"
+          "current_key": "AIzaSyDgiMVmY6-L8cbPDQnWcKF98zjnogdsZzg"
         }
       ],
       "services": {
