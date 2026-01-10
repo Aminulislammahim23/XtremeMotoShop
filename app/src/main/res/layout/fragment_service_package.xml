@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="SUZUKI SERVICE"
+            android:text="OUR SERVICE"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BDT 555.00" />
+                    android:text="BDT 550.00" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BDT 777.00" />
+                    android:text="BDT 700.00" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -286,14 +286,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BDT 1444.00" />
+                    android:text="BDT 1450.00" />
 
                 <Button
+                    android.text="Book Now"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/suzuki_blue"
-                    android.text="Book Now" />
+                    android:text="Book Now" />
 
                 <TextView
                     android:layout_width="match_parent"

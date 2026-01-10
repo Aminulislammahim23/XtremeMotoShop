@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -14,8 +15,15 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.database.FirebaseDatabase
+import kotlin.concurrent.atomics.AtomicReference
 
 class AddServiceBookingFragment : Fragment() {
+
+    lateinit var acTVselectDivision: AutoCompleteTextView
+    lateinit var acTVselectDistrict: AutoCompleteTextView
+    lateinit var storeReference: FirebaseDatabase
+
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 

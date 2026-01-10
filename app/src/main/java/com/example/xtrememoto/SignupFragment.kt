@@ -1,6 +1,7 @@
 package com.example.xtrememoto
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignupFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,45 +31,45 @@ class SignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         val etName = view.findViewById<EditText>(R.id.etName)
         val etEmail = view.findViewById<EditText>(R.id.etEmail)
-        val etMobileNumber = view.findViewById<EditText>(R.id.etEmail)
         val etPassword = view.findViewById<EditText>(R.id.etPassword)
         val btnSignUp = view.findViewById<Button>(R.id.btnSignUp)
 
         btnSignUp.setOnClickListener {
-            val fullName = etName.text.toString()
-            val email = etEmail.text.toString()
-            val phone = etMobileNumber.text.toString()
+            val name = etName.text.toString().trim()
+            val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
 
-            if (fullName.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && password.isNotEmpty()) {
+            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser
                             val userId = user?.uid
                             if (userId != null) {
-                                val userRef = database.getReference("users").child(userId)
                                 val userData = hashMapOf(
-                                    "fullName" to fullName,
-                                    "email" to email,
-                                    "phone" to phone
+                                    "fullName" to name,
+                                    "email" to email
                                 )
-                                userRef.setValue(userData).addOnCompleteListener {
-                                    if(it.isSuccessful){
-                                        Toast.makeText(requireContext(), "Signup Successfully", Toast.LENGTH_SHORT).show()
+                                db.collection("users").document(userId)
+                                    .set(userData)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(requireContext(), "Signup Successful!", Toast.LENGTH_SHORT).show()
                                         findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                                     }
-                                }
+                                    .addOnFailureListener { e ->
+                                        Log.w("SignupFragment", "Error adding document", e)
+                                        Toast.makeText(requireContext(), "An error occurred while saving user data.", Toast.LENGTH_SHORT).show()
+                                    }
                             }
                         } else {
                             Toast.makeText(
                                 requireContext(),
                                 "Authentication failed: ${task.exception?.message}",
-                            Toast.LENGTH_SHORT
+                                Toast.LENGTH_SHORT
                             ).show()
                         }
                     }

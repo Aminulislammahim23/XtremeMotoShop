@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/tvProfileTitle"
-        android:layout_width="158dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="151dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
         android:text="Profile"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="34sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

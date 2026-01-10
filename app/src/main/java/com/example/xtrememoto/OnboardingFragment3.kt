@@ -31,7 +31,7 @@ class OnboardingFragment3 : Fragment() {
         tvOnboardingTitle.text = "Easy to Shop"
 
         val tvOnboardingDescription = view.findViewById<TextView>(R.id.tvOnboardingDescription)
-        tvOnboardingDescription.text = "Explore the latest Suzuki bikes and accessories with ease. Browse, compare, and shop right from your phone to get the ride of your dreams."
+        tvOnboardingDescription.text = "Explore the latest bikes and accessories with ease. Browse, compare, and shop right from your phone to get the ride of your dreams."
 
         val tvSkip = view.findViewById<TextView>(R.id.tvSkip)
         tvSkip.visibility = View.GONE

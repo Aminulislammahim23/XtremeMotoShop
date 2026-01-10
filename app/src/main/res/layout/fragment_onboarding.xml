@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOnboardingTitle"
-        tools:text="Keep your Suzuki bike in top-notch condition with our expert servicing options. Book maintenance, check service details, and ensure your bike delivers peak performance every time." />
+        tools:text="Keep your bike in top-notch condition with our expert servicing options. Book maintenance, check service details, and ensure your bike delivers peak performance every time." />
 
     <LinearLayout
         android:id="@+id/llPageIndicator"

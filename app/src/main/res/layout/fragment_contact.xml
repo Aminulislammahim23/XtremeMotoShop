@@ -16,6 +16,7 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,28 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Address: 387, Tejgaon I/A, Dhaka-1208" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Get Directions >"
-                    android:textColor="@color/suzuki_blue" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="MANUFACTURING UNIT"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Address: Boro Bhabanipur, Kashimpur, Gazipur" />
+                    android:text="Address: G.P F/63,Mohakhali School Road, Dhaka-1212" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Telephone: 16638" />
+                        android:text="Telephone: 01629942052" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
@@ -152,7 +132,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="info@suzuki.com.bd" />
+                        android:text="info@xtrememoto.com.bd" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
@@ -180,33 +160,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilAge"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/tilName">
-
-            <AutoCompleteTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="Age Range" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/tilAge">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="550dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_contact_us"
-                android:drawablePadding="8dp"
-                android:hint="Enter Phone Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -276,5 +235,14 @@
             android:backgroundTint="@color/suzuki_blue"
             android:text="Submit"
             app:layout_constraintTop_toBottomOf="@id/tilNote" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_contact_us"
+            android:drawablePadding="8dp"
+            android:hint="Enter Phone Number"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="497dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

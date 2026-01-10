@@ -100,7 +100,7 @@
                     app:layout_constraintWidth_percent="0.5">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                        android:layout_width="346dp"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_profile_placeholder"
                         android:drawablePadding="8dp"
@@ -114,15 +114,7 @@
                     android:layout_marginStart="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tilFirstName"
-                    app:layout_constraintWidth_percent="0.5">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_profile_placeholder"
-                        android:drawablePadding="8dp"
-                        android:hint="Last Name" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintWidth_percent="0.5"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilPhoneNumber"
