@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginFragment : Fragment() {
 
@@ -20,7 +21,6 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -34,15 +34,43 @@ class LoginFragment : Fragment() {
         val btnLogin = view.findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            val email = etEmail.text.toString()
-            val password = etPassword.text.toString()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(requireActivity()) { task ->
-                        if (task.isSuccessful) {
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                        } else {
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter email and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Show loading or disable button here if needed
+            btnLogin.isEnabled = false
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                        val uid = user?.uid
+
+                        if (uid != null) {
+                            val database = FirebaseDatabase.getInstance().getReference("users")
+                            
+                            // Store last login timestamp
+                            database.child(uid).child("lastLogin").setValue(System.currentTimeMillis())
+                                .addOnCompleteListener { dbTask ->
+                                    if (isAdded) { // Check if fragment is still attached
+                                        if (dbTask.isSuccessful) {
+                                            Toast.makeText(requireContext(), "Login Successful!", Toast.LENGTH_SHORT).show()
+                                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                        } else {
+                                            // Even if DB fails, we proceed to Home since Auth was successful
+                                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                        }
+                                    }
+                                }
+                        }
+                    } else {
+                        if (isAdded) {
+                            btnLogin.isEnabled = true
                             Toast.makeText(
                                 requireContext(),
                                 "Authentication failed: ${task.exception?.message}",
@@ -50,9 +78,7 @@ class LoginFragment : Fragment() {
                             ).show()
                         }
                     }
-            } else {
-                Toast.makeText(requireContext(), "Please enter email and password", Toast.LENGTH_SHORT).show()
-            }
+                }
         }
 
         val tvSignUp = view.findViewById<TextView>(R.id.tvSignUp)

@@ -26,7 +26,6 @@
             android:id="@+id/tvPersonalInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Personal Info"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -42,6 +41,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/circle_background"
             android:src="@drawable/ic_profile_placeholder"
+            android:contentDescription="@string/profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPersonalInfo" />
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Aminul Islam Mahim"
+            android:text="User"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPersonalDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -90,48 +91,39 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilFirstName"
-                    android:layout_width="0dp"
+                    android:id="@+id/tilFirstNameLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPersonalInformation"
-                    app:layout_constraintWidth_percent="0.5">
+                    app:layout_constraintTop_toBottomOf="@+id/tvPersonalInformation">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="346dp"
+                        android:id="@+id/tilFullname"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_profile_placeholder"
                         android:drawablePadding="8dp"
-                        android:hint="First Name" />
+                        android:enabled="false"
+                        android:hint="Full Name" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilLastName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tilFirstName"
-                    app:layout_constraintWidth_percent="0.5"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPhoneNumber"
+                    android:id="@+id/tilPhoneNumberLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tilFirstName">
+                    app:layout_constraintTop_toBottomOf="@+id/tilFirstNameLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tilPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/light_gray"
                         android:drawableStart="@drawable/ic_contact_us"
                         android:drawablePadding="8dp"
                         android:enabled="false"
-                        android:hint="Phone"
-                        android:textColor="@android:color/darker_gray" />
+                        android:hint="Phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -142,25 +134,25 @@
                     android:textColor="@color/green"
                     android:visibility="invisible"
                     app:drawableEndCompat="@drawable/ic_check_circle"
-                    app:layout_constraintBottom_toBottomOf="@+id/tilPhoneNumber"
-                    app:layout_constraintEnd_toEndOf="@+id/tilPhoneNumber"
-                    app:layout_constraintTop_toTopOf="@+id/tilPhoneNumber" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tilPhoneNumberLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/tilPhoneNumberLayout"
+                    app:layout_constraintTop_toTopOf="@+id/tilPhoneNumberLayout" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
+                    android:id="@+id/tilEmailLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tilPhoneNumber">
+                    app:layout_constraintTop_toBottomOf="@+id/tilPhoneNumberLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tilEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_email"
                         android:drawablePadding="8dp"
                         android:enabled="false"
-                        android:hint="Email"
-                        android:textColor="@android:color/darker_gray" />
+                        android:hint="Email" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -171,41 +163,59 @@
                     android:textColor="@color/green"
                     android:visibility="invisible"
                     app:drawableEndCompat="@drawable/ic_check_circle"
-                    app:layout_constraintBottom_toBottomOf="@+id/tilEmail"
-                    app:layout_constraintEnd_toEndOf="@+id/tilEmail"
-                    app:layout_constraintTop_toTopOf="@+id/tilEmail" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tilEmailLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/tilEmailLayout"
+                    app:layout_constraintTop_toTopOf="@+id/tilEmailLayout" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilGender"
+                    android:id="@+id/tilGenderLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+                    app:layout_constraintTop_toBottomOf="@+id/tilEmailLayout">
 
                     <AutoCompleteTextView
+                        android:id="@+id/actGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:text="Gender" />
+                        android:hint="Gender"
+                        android:enabled="false"
+                        android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilDob"
+                    android:id="@+id/tilDobLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tilGender">
+                    app:layout_constraintTop_toBottomOf="@+id/tilGenderLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tilDob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_calendar"
+                        android:enabled="false"
                         android:hint="Date of Birth" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Save"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/cvPersonalDetails"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

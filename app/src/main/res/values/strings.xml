@@ -34,4 +34,7 @@
     <string name="bike_image">Bike Image</string>
     <string name="expand_collapse">Expand/Collapse</string>
     <string name="bike_name_default">GIXXER NEW SERIES FI DISC V4 BLACK</string>
+    
+    <string name="user_name">User</string>
+    <string name="add_circle">Add item</string>
 </resources>

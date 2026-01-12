@@ -11,4 +11,10 @@
     <color name="red">#D32F2F</color>
     <color name="service_history_card_background">#E0F2F1</color>
     <color name="divider">#BDBDBD</color>
+
+    <!-- নতুন যোগ করা কালার -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="bottom_nav_selected">#0033A0</color>
+    <color name="bottom_nav_unselected">#757575</color>
 </resources>
