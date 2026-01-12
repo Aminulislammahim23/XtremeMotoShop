@@ -2,6 +2,7 @@ package com.example.xtrememoto
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +12,27 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.Calendar
 
 class AddBikeFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_bike, container, false)
+
+        // Initialize Firebase
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
 
         // Find views
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
@@ -32,6 +45,28 @@ class AddBikeFragment : Fragment() {
         val etPurchase = view.findViewById<EditText>(R.id.etPurchase)
         val etReg = view.findViewById<EditText>(R.id.etReg)
         val btnAddBike = view.findViewById<MaterialButton>(R.id.btnAddBike)
+
+        // Force all input to uppercase as you type
+        val allCapsFilter = arrayOf(InputFilter.AllCaps())
+        etName.filters = allCapsFilter
+        etModel.filters = allCapsFilter
+        etColor.filters = allCapsFilter
+        etCustName.filters = allCapsFilter
+        etEngNum.filters = allCapsFilter
+        etFrameNum.filters = allCapsFilter
+        etReg.filters = allCapsFilter
+
+        // Fetch User's Name from Firebase for etCustName
+        val user = auth.currentUser
+        user?.let {
+            val uid = it.uid
+            val userRef = database.getReference("users").child(uid)
+            userRef.child("Name").get().addOnSuccessListener { snapshot ->
+                if (snapshot.exists() && isAdded) {
+                    etCustName.setText(snapshot.value.toString().uppercase())
+                }
+            }
+        }
 
         // Setup Back Button
         btnBack.setOnClickListener {
@@ -71,14 +106,56 @@ class AddBikeFragment : Fragment() {
                 custName.isNotEmpty() && engNum.isNotEmpty() && frameNum.isNotEmpty() && 
                 purchase.isNotEmpty() && reg.isNotEmpty()) {
                 
-                // Logic to save bike data to Firebase would go here
-                Toast.makeText(context, "Bike Added Successfully!", Toast.LENGTH_SHORT).show()
-                findNavController().popBackStack()
+                saveBikeData(name, model, color, custName, engNum, frameNum, purchase, reg)
             } else {
                 Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
             }
         }
 
         return view
+    }
+
+    private fun saveBikeData(
+        name: String, model: String, color: String, custName: String,
+        engNum: String, frameNum: String, purchase: String, reg: String
+    ) {
+        val userId = auth.currentUser?.uid ?: return
+        val bikesRef = database.getReference("users").child(userId).child("Bikes")
+
+        bikesRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val nextIndex = (snapshot.childrenCount + 1).toString()
+
+                val bikeData = mapOf(
+                    "name" to name,
+                    "model" to model,
+                    "color" to color,
+                    "custName" to custName,
+                    "engNum" to engNum,
+                    "frameNum" to frameNum,
+                    "purchase" to purchase,
+                    "reg" to reg
+                )
+
+                bikesRef.child(nextIndex).setValue(bikeData)
+                    .addOnSuccessListener {
+                        if (isAdded) {
+                            Toast.makeText(context, "Bike Added Successfully!", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                    }
+                    .addOnFailureListener { e ->
+                        if (isAdded) {
+                            Toast.makeText(context, "Failed to add bike: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                if (isAdded) {
+                    Toast.makeText(context, "Database Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }

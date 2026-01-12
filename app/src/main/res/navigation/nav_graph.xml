@@ -125,14 +125,14 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
+            android:id="@+id/action_profileFragment_to_viewProfileFragment"
+            app:destination="@id/viewProfileFragment" />
+        <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:launchSingleTop="true"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_profileFragment_to_viewProfileFragment"
-            app:destination="@id/viewProfileFragment" />
         <action
             android:id="@+id/action_profileFragment_to_documentsFragment"
             app:destination="@id/documentsFragment" />
@@ -148,12 +148,10 @@
         android:id="@+id/viewProfileFragment"
         android:name="com.example.xtrememoto.ViewProfileFragment"
         android:label="fragment_view_profile"
-        tools:layout="@layout/fragment_view_profile">
+        tools:layout="@layout/fragment_view_profile" >
         <action
             android:id="@+id/action_viewProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:popUpTo="@id/viewProfileFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
@@ -216,17 +214,21 @@
         android:name="com.example.xtrememoto.BikeDetailFragment"
         android:label="fragment_bike_detail"
         tools:layout="@layout/fragment_bike_detail" />
+
     <fragment
         android:id="@+id/myBikeFragment"
         android:name="com.example.xtrememoto.MyBikeFragment"
-        android:label="MyBikeFragment" >
+        android:label="fragment_my_bike"
+        tools:layout="@layout/fragment_my_bike">
         <action
             android:id="@+id/action_myBikeFragment_to_addBikeFragment"
             app:destination="@id/addBikeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addBikeFragment"
         android:name="com.example.xtrememoto.AddBikeFragment"
-        android:label="AddBikeFragment" />
+        android:label="fragment_add_bike"
+        tools:layout="@layout/fragment_add_bike" />
 
 </navigation>

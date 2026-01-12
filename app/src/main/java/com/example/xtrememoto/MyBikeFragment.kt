@@ -29,10 +29,10 @@ class MyBikeFragment : Fragment() {
         view.findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             findNavController().popBackStack()
         }
-        // Setup Add New Bike Button
+        
+        // Setup Add New Bike Button (XML এর আইডির সাথে ম্যাচ করানো হয়েছে)
         val btnAddNewBike = view.findViewById<MaterialButton>(R.id.btnAddNewBike)
         btnAddNewBike.setOnClickListener {
-            // Note: Ensure this ID matches your nav_graph.xml
             findNavController().navigate(R.id.action_myBikeFragment_to_addBikeFragment)
         }
 
