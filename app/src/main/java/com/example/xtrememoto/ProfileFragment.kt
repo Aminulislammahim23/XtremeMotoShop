@@ -48,6 +48,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_viewProfileFragment)
         }
 
+        view.findViewById<MaterialCardView>(R.id.cvMyBikes).setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_myBikeFragment)
+        }
+
         view.findViewById<MaterialCardView>(R.id.cvBikeDocuments).setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_documentsFragment)
         }

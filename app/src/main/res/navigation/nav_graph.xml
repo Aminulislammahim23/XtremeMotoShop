@@ -139,6 +139,9 @@
         <action
             android:id="@+id/action_profileFragment_to_serviceHistoryFragment"
             app:destination="@id/serviceHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myBikeFragment"
+            app:destination="@id/myBikeFragment" />
     </fragment>
 
     <fragment
@@ -213,5 +216,17 @@
         android:name="com.example.xtrememoto.BikeDetailFragment"
         android:label="fragment_bike_detail"
         tools:layout="@layout/fragment_bike_detail" />
+    <fragment
+        android:id="@+id/myBikeFragment"
+        android:name="com.example.xtrememoto.MyBikeFragment"
+        android:label="MyBikeFragment" >
+        <action
+            android:id="@+id/action_myBikeFragment_to_addBikeFragment"
+            app:destination="@id/addBikeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBikeFragment"
+        android:name="com.example.xtrememoto.AddBikeFragment"
+        android:label="AddBikeFragment" />
 
 </navigation>
