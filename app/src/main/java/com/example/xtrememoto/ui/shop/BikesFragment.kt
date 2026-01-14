@@ -1,26 +1,46 @@
 package com.example.xtrememoto.ui.shop
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
+import com.example.xtrememoto.adapter.ShopBikeAdapter
+import com.example.xtrememoto.repository.ShopRepository
 
-class BikesFragment : Fragment() {
+class BikesFragment : Fragment(R.layout.fragment_bikes) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_bikes, container, false)
+    private lateinit var rvBikes: RecyclerView
+    private val repository = ShopRepository()
 
-        // Set a click listener on the root view to navigate to the bike detail screen
-        view.setOnClickListener {
-            findNavController().navigate(R.id.action_bikesFragment_to_bikeDetailFragment)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        return view
+        // আইডিটি নিশ্চিত করুন আপনার XML এর সাথে মিলছে কি না (আমি rvBikes ব্যবহার করছি)
+        rvBikes = view.findViewById(R.id.rvBikes)
+        rvBikes.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        loadBikes()
+    }
+
+    private fun loadBikes() {
+        repository.getAllShopBikes(
+            onSuccess = { bikes ->
+                if (bikes.isEmpty()) {
+                    Toast.makeText(requireContext(), "No bikes found in database", Toast.LENGTH_SHORT).show()
+                } else {
+                    val adapter = ShopBikeAdapter { bike ->
+                        // ডিটেইল স্ক্রিনে যাওয়ার লজিক
+                    }
+                    rvBikes.adapter = adapter
+                    adapter.submitList(bikes)
+                }
+            },
+            onError = { errorMessage ->
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 }
