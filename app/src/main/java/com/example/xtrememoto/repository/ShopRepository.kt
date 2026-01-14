@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener
 class ShopRepository {
 
     private val dbRef = FirebaseDatabase.getInstance()
-        .getReference("shop/bikes/categories/1")
+        .getReference("shop/bikes/categories")
 
     fun getAllShopBikes(
         onSuccess: (List<ShopBike>) -> Unit,
@@ -26,25 +26,30 @@ class ShopRepository {
                     return
                 }
 
-                for (categorySnap in snapshot.children) {
-                    val categoryName = categorySnap.key ?: ""
+                // First loop: for index nodes (e.g., "1", "2")
+                for (indexSnap in snapshot.children) {
                     
-                    for (bikeSnap in categorySnap.children) {
-                        try {
-                            // সরাসরি .value.toString() ব্যবহার করা হচ্ছে যাতে null না আসে
-                            val bike = ShopBike(
-                                id = bikeSnap.key,
-                                name = bikeSnap.child("name").value?.toString() ?: "No Name",
-                                brand = bikeSnap.child("brand").value?.toString() ?: "No Brand",
-                                cc = bikeSnap.child("cc").value?.toString() ?: "0",
-                                price = bikeSnap.child("price").value?.toString() ?: "0",
-                                stock = bikeSnap.child("stock").value?.toString() ?: "0",
-                                img = bikeSnap.child("img").value?.toString(),
-                                category = categoryName
-                            )
-                            bikes.add(bike)
-                        } catch (e: Exception) {
-                            Log.e("ShopRepo", "Error: ${e.message}")
+                    // Second loop: for category names (e.g., "sports", "commuter")
+                    for (categorySnap in indexSnap.children) {
+                        val categoryName = categorySnap.key ?: ""
+                        
+                        // Third loop: for individual bikes (e.g., "1", "2")
+                        for (bikeSnap in categorySnap.children) {
+                            try {
+                                val bike = ShopBike(
+                                    id = bikeSnap.key,
+                                    name = bikeSnap.child("name").value?.toString() ?: "No Name",
+                                    brand = bikeSnap.child("brand").value?.toString() ?: "No Brand",
+                                    cc = bikeSnap.child("cc").value?.toString() ?: "0",
+                                    price = bikeSnap.child("price").value?.toString() ?: "0",
+                                    stock = bikeSnap.child("stock").value?.toString() ?: "0",
+                                    img = bikeSnap.child("img").value?.toString(),
+                                    category = categoryName
+                                )
+                                bikes.add(bike)
+                            } catch (e: Exception) {
+                                Log.e("ShopRepo", "Error: ${e.message}")
+                            }
                         }
                     }
                 }
