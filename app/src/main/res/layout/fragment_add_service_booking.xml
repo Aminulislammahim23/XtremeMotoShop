@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".AddServiceBookingFragment">
+    tools:context=".ui.service.AddServiceBookingFragment">
 
     <ImageButton
         android:id="@+id/btnBack"

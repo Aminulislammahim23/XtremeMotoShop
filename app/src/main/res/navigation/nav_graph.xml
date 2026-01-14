@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.xtrememoto.SplashFragment"
+        android:name="com.example.xtrememoto.ui.onboarding.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment1"
-        android:name="com.example.xtrememoto.OnboardingFragment1"
+        android:name="com.example.xtrememoto.ui.onboarding.OnboardingFragment1"
         android:label="OnboardingFragment1">
         <action
             android:id="@+id/action_onboardingFragment1_to_onboardingFragment2"
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment2"
-        android:name="com.example.xtrememoto.OnboardingFragment2"
+        android:name="com.example.xtrememoto.ui.onboarding.OnboardingFragment2"
         android:label="OnboardingFragment2">
         <action
             android:id="@+id/action_onboardingFragment2_to_onboardingFragment3"
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment3"
-        android:name="com.example.xtrememoto.OnboardingFragment3"
+        android:name="com.example.xtrememoto.ui.onboarding.OnboardingFragment3"
         android:label="OnboardingFragment3">
         <action
             android:id="@+id/action_onboardingFragment3_to_loginFragment"
@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.xtrememoto.LoginFragment"
+        android:name="com.example.xtrememoto.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.xtrememoto.SignupFragment"
+        android:name="com.example.xtrememoto.ui.auth.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup">
         <action
@@ -87,7 +87,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.xtrememoto.HomeFragment"
+        android:name="com.example.xtrememoto.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -121,7 +121,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.xtrememoto.ProfileFragment"
+        android:name="com.example.xtrememoto.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -146,7 +146,7 @@
 
     <fragment
         android:id="@+id/viewProfileFragment"
-        android:name="com.example.xtrememoto.ViewProfileFragment"
+        android:name="com.example.xtrememoto.ui.profile.ViewProfileFragment"
         android:label="fragment_view_profile"
         tools:layout="@layout/fragment_view_profile" >
         <action
@@ -156,25 +156,25 @@
 
     <fragment
         android:id="@+id/documentsFragment"
-        android:name="com.example.xtrememoto.DocumentsFragment"
+        android:name="com.example.xtrememoto.ui.bike.DocumentsFragment"
         android:label="fragment_documents"
         tools:layout="@layout/fragment_documents" />
 
     <fragment
         android:id="@+id/serviceHistoryFragment"
-        android:name="com.example.xtrememoto.ServiceHistoryFragment"
+        android:name="com.example.xtrememoto.ui.service.ServiceHistoryFragment"
         android:label="fragment_service_history"
         tools:layout="@layout/fragment_service_history" />
 
     <fragment
         android:id="@+id/servicePackageFragment"
-        android:name="com.example.xtrememoto.ServicePackageFragment"
+        android:name="com.example.xtrememoto.ui.service.ServicePackageFragment"
         android:label="fragment_service_package"
         tools:layout="@layout/fragment_service_package" />
 
     <fragment
         android:id="@+id/serviceBookingFragment"
-        android:name="com.example.xtrememoto.ServiceBookingFragment"
+        android:name="com.example.xtrememoto.ui.service.ServiceBookingFragment"
         android:label="fragment_service_booking"
         tools:layout="@layout/fragment_service_booking">
         <action
@@ -184,24 +184,24 @@
 
     <fragment
         android:id="@+id/addServiceBookingFragment"
-        android:name="com.example.xtrememoto.AddServiceBookingFragment"
+        android:name="com.example.xtrememoto.ui.service.AddServiceBookingFragment"
         android:label="fragment_add_service_booking"
         tools:layout="@layout/fragment_add_service_booking" />
 
     <fragment
         android:id="@+id/bookTestRideFragment"
-        android:name="com.example.xtrememoto.BookTestRideFragment"
+        android:name="com.example.xtrememoto.ui.service.BookTestRideFragment"
         android:label="BookTestRideFragment" />
 
     <fragment
         android:id="@+id/partsFragment"
-        android:name="com.example.xtrememoto.PartsFragment"
+        android:name="com.example.xtrememoto.ui.shop.PartsFragment"
         android:label="fragment_parts"
         tools:layout="@layout/fragment_parts" />
 
     <fragment
         android:id="@+id/bikesFragment"
-        android:name="com.example.xtrememoto.BikesFragment"
+        android:name="com.example.xtrememoto.ui.shop.BikesFragment"
         android:label="fragment_bikes"
         tools:layout="@layout/fragment_bikes">
         <action
@@ -211,13 +211,13 @@
 
     <fragment
         android:id="@+id/bikeDetailFragment"
-        android:name="com.example.xtrememoto.BikeDetailFragment"
+        android:name="com.example.xtrememoto.ui.bike.BikeDetailFragment"
         android:label="fragment_bike_detail"
         tools:layout="@layout/fragment_bike_detail" />
 
     <fragment
         android:id="@+id/myBikeFragment"
-        android:name="com.example.xtrememoto.MyBikeFragment"
+        android:name="com.example.xtrememoto.ui.bike.MyBikeFragment"
         android:label="fragment_my_bike"
         tools:layout="@layout/fragment_my_bike">
         <action
@@ -227,7 +227,7 @@
 
     <fragment
         android:id="@+id/addBikeFragment"
-        android:name="com.example.xtrememoto.AddBikeFragment"
+        android:name="com.example.xtrememoto.ui.bike.AddBikeFragment"
         android:label="fragment_add_bike"
         tools:layout="@layout/fragment_add_bike" />
 

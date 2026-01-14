@@ -5,7 +5,7 @@
     android:id="@+id/clBikeDocs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DocumentsFragment">
+    tools:context=".ui.bike.DocumentsFragment">
 
     <ImageButton
         android:id="@+id/btnBack"

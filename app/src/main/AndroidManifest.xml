@@ -22,7 +22,7 @@
             android:value="YOUR_API_KEY_HERE" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
