@@ -5,18 +5,200 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
+    <!-- Auth -->
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.xtrememoto.ui.onboarding.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash">
+        android:id="@+id/loginFragment"
+        android:name="com.example.xtrememoto.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_splashFragment_to_onboardingFragment1"
-            app:destination="@id/onboardingFragment1"
-            app:popUpTo="@id/splashFragment"
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.xtrememoto.ui.auth.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/signupFragment"
             app:popUpToInclusive="true" />
     </fragment>
 
+    <!-- Home -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.xtrememoto.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_documentsFragment"
+            app:destination="@id/documentsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceHistoryFragment"
+            app:destination="@id/serviceHistoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_servicePackageFragment"
+            app:destination="@id/servicePackageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_testRideFragment"
+            app:destination="@id/testRideFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceBookingFragment"
+            app:destination="@id/serviceBookingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookTestRideFragment"
+            app:destination="@id/bookTestRideFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_partsFragment"
+            app:destination="@id/partsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bikesFragment"
+            app:destination="@id/bikesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myBikeFragment"
+            app:destination="@id/myBikeFragment" />
+    </fragment>
+
+    <!-- Bike -->
+    <fragment
+        android:id="@+id/bikesFragment"
+        android:name="com.example.xtrememoto.ui.shop.BikesFragment"
+        android:label="fragment_bikes"
+        tools:layout="@layout/fragment_bikes">
+        <action
+            android:id="@+id/action_bikesFragment_to_bikeDetailFragment"
+            app:destination="@id/bikeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bikeDetailFragment"
+        android:name="com.example.xtrememoto.ui.bike.BikeDetailFragment"
+        android:label="fragment_bike_detail"
+        tools:layout="@layout/fragment_bike_detail" />
+
+    <fragment
+        android:id="@+id/myBikeFragment"
+        android:name="com.example.xtrememoto.ui.bike.MyBikeFragment"
+        android:label="fragment_my_bike"
+        tools:layout="@layout/fragment_my_bike">
+        <action
+            android:id="@+id/action_myBikeFragment_to_addBikeFragment"
+            app:destination="@id/addBikeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addBikeFragment"
+        android:name="com.example.xtrememoto.ui.bike.AddBikeFragment"
+        android:label="fragment_add_bike"
+        tools:layout="@layout/fragment_add_bike" />
+
+    <!-- Service -->
+    <fragment
+        android:id="@+id/serviceBookingFragment"
+        android:name="com.example.xtrememoto.ui.service.ServiceBookingFragment"
+        android:label="fragment_service_booking"
+        tools:layout="@layout/fragment_service_booking">
+        <action
+            android:id="@+id/action_serviceBookingFragment_to_addServiceBookingFragment"
+            app:destination="@id/addServiceBookingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addServiceBookingFragment"
+        android:name="com.example.xtrememoto.ui.service.AddServiceBookingFragment"
+        android:label="fragment_add_service_booking"
+        tools:layout="@layout/fragment_add_service_booking" />
+
+    <fragment
+        android:id="@+id/serviceHistoryFragment"
+        android:name="com.example.xtrememoto.ui.service.ServiceHistoryFragment"
+        android:label="fragment_service_history"
+        tools:layout="@layout/fragment_service_history" />
+
+    <fragment
+        android:id="@+id/servicePackageFragment"
+        android:name="com.example.xtrememoto.ui.service.ServicePackageFragment"
+        android:label="fragment_service_package"
+        tools:layout="@layout/fragment_service_package" >
+        <action
+            android:id="@+id/action_servicePackageFragment_to_addServiceBookingFragment"
+            app:destination="@id/addServiceBookingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookTestRideFragment"
+        android:name="com.example.xtrememoto.ui.service.BookTestRideFragment"
+        android:label="BookTestRideFragment" />
+
+    <!-- Profile -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.xtrememoto.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_viewProfileFragment"
+            app:destination="@id/viewProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_documentsFragment"
+            app:destination="@id/documentsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_serviceHistoryFragment"
+            app:destination="@id/serviceHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myBikeFragment"
+            app:destination="@id/myBikeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_cPassFragment"
+            app:destination="@id/cPassFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewProfileFragment"
+        android:name="com.example.xtrememoto.ui.profile.ViewProfileFragment"
+        android:label="fragment_view_profile"
+        tools:layout="@layout/fragment_view_profile" >
+        <action
+            android:id="@+id/action_viewProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/documentsFragment"
+        android:name="com.example.xtrememoto.ui.bike.DocumentsFragment"
+        android:label="fragment_documents"
+        tools:layout="@layout/fragment_documents" />
+
+    <fragment
+        android:id="@+id/cPassFragment"
+        android:name="com.example.xtrememoto.ui.profile.CPassFragment"
+        android:label="fragment_c_pass"
+        tools:layout="@layout/fragment_c_pass" />
+
+    <!-- Onboarding -->
     <fragment
         android:id="@+id/onboardingFragment1"
         android:name="com.example.xtrememoto.ui.onboarding.OnboardingFragment1"
@@ -56,149 +238,18 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <!-- Other -->
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.xtrememoto.ui.auth.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login">
+        android:id="@+id/splashFragment"
+        android:name="com.example.xtrememoto.ui.onboarding.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/signupFragment"
-        android:name="com.example.xtrememoto.ui.auth.SignupFragment"
-        android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup">
-        <action
-            android:id="@+id/action_signupFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/signupFragment"
+            android:id="@+id/action_splashFragment_to_onboardingFragment1"
+            app:destination="@id/onboardingFragment1"
+            app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.xtrememoto.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_homeFragment_to_documentsFragment"
-            app:destination="@id/documentsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_serviceHistoryFragment"
-            app:destination="@id/serviceHistoryFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_servicePackageFragment"
-            app:destination="@id/servicePackageFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_serviceBookingFragment"
-            app:destination="@id/serviceBookingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_bookTestRideFragment"
-            app:destination="@id/bookTestRideFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_partsFragment"
-            app:destination="@id/partsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_bikesFragment"
-            app:destination="@id/bikesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_myBikeFragment"
-            app:destination="@id/myBikeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.xtrememoto.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_profileFragment_to_viewProfileFragment"
-            app:destination="@id/viewProfileFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_profileFragment_to_documentsFragment"
-            app:destination="@id/documentsFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_serviceHistoryFragment"
-            app:destination="@id/serviceHistoryFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_myBikeFragment"
-            app:destination="@id/myBikeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/viewProfileFragment"
-        android:name="com.example.xtrememoto.ui.profile.ViewProfileFragment"
-        android:label="fragment_view_profile"
-        tools:layout="@layout/fragment_view_profile" >
-        <action
-            android:id="@+id/action_viewProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/documentsFragment"
-        android:name="com.example.xtrememoto.ui.bike.DocumentsFragment"
-        android:label="fragment_documents"
-        tools:layout="@layout/fragment_documents" />
-
-    <fragment
-        android:id="@+id/serviceHistoryFragment"
-        android:name="com.example.xtrememoto.ui.service.ServiceHistoryFragment"
-        android:label="fragment_service_history"
-        tools:layout="@layout/fragment_service_history" />
-
-    <fragment
-        android:id="@+id/servicePackageFragment"
-        android:name="com.example.xtrememoto.ui.service.ServicePackageFragment"
-        android:label="fragment_service_package"
-        tools:layout="@layout/fragment_service_package" >
-        <action
-            android:id="@+id/action_servicePackageFragment_to_addServiceBookingFragment"
-            app:destination="@id/addServiceBookingFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/serviceBookingFragment"
-        android:name="com.example.xtrememoto.ui.service.ServiceBookingFragment"
-        android:label="fragment_service_booking"
-        tools:layout="@layout/fragment_service_booking">
-        <action
-            android:id="@+id/action_serviceBookingFragment_to_addServiceBookingFragment"
-            app:destination="@id/addServiceBookingFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addServiceBookingFragment"
-        android:name="com.example.xtrememoto.ui.service.AddServiceBookingFragment"
-        android:label="fragment_add_service_booking"
-        tools:layout="@layout/fragment_add_service_booking" />
-
-    <fragment
-        android:id="@+id/bookTestRideFragment"
-        android:name="com.example.xtrememoto.ui.service.BookTestRideFragment"
-        android:label="BookTestRideFragment" />
 
     <fragment
         android:id="@+id/partsFragment"
@@ -207,35 +258,9 @@
         tools:layout="@layout/fragment_parts" />
 
     <fragment
-        android:id="@+id/bikesFragment"
-        android:name="com.example.xtrememoto.ui.shop.BikesFragment"
-        android:label="fragment_bikes"
-        tools:layout="@layout/fragment_bikes">
-        <action
-            android:id="@+id/action_bikesFragment_to_bikeDetailFragment"
-            app:destination="@id/bikeDetailFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/bikeDetailFragment"
-        android:name="com.example.xtrememoto.ui.bike.BikeDetailFragment"
-        android:label="fragment_bike_detail"
-        tools:layout="@layout/fragment_bike_detail" />
-
-    <fragment
-        android:id="@+id/myBikeFragment"
-        android:name="com.example.xtrememoto.ui.bike.MyBikeFragment"
-        android:label="fragment_my_bike"
-        tools:layout="@layout/fragment_my_bike">
-        <action
-            android:id="@+id/action_myBikeFragment_to_addBikeFragment"
-            app:destination="@id/addBikeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addBikeFragment"
-        android:name="com.example.xtrememoto.ui.bike.AddBikeFragment"
-        android:label="fragment_add_bike"
-        tools:layout="@layout/fragment_add_bike" />
+        android:id="@+id/testRideFragment"
+        android:name="com.example.xtrememoto.ui.service.TestRideFragment"
+        android:label="fragment_test_ride"
+        tools:layout="@layout/fragment_test_ride" />
 
 </navigation>

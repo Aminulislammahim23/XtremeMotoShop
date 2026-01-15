@@ -34,7 +34,7 @@ class ProfileFragment : Fragment() {
         val tvUserName = view.findViewById<TextView>(R.id.tvUserName)
         val user = auth.currentUser
 
-        // ইউজারের নাম Firebase থেকে নিয়ে আসা (users -> [UID] -> Name)
+        // Fetch User's Name from Firebase
         user?.let {
             val uid = it.uid
             val userRef = database.getReference("users").child(uid)
@@ -45,18 +45,27 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        // Profile details navigation
         view.findViewById<MaterialCardView>(R.id.cvProfile).setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_viewProfileFragment)
         }
 
+        // My Bikes navigation
         view.findViewById<MaterialCardView>(R.id.cvMyBikes).setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_myBikeFragment)
         }
 
+        // Bike Documents navigation
         view.findViewById<MaterialCardView>(R.id.cvBikeDocuments).setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_documentsFragment)
         }
 
+        // Change Password navigation
+        view.findViewById<MaterialCardView>(R.id.cvPassword).setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_cPassFragment)
+        }
+
+        // Logout
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
             auth.signOut()

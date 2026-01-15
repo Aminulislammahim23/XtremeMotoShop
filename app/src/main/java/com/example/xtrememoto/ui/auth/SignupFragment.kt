@@ -33,6 +33,7 @@ class SignupFragment : Fragment() {
         val etName = view.findViewById<EditText>(R.id.etName)
         val etEmail = view.findViewById<EditText>(R.id.etEmail)
         val etPassword = view.findViewById<EditText>(R.id.etPassword)
+        val etConfirmPassword = view.findViewById<EditText>(R.id.etConfirmPassword)
         val btnSignUp = view.findViewById<Button>(R.id.btnSignUp)
 
         observeViewModel()
@@ -41,16 +42,22 @@ class SignupFragment : Fragment() {
             val name = etName.text.toString().trim()
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
+            val confirmPassword = etConfirmPassword.text.toString()
 
-            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                viewModel.signup(name, email, password)
-            } else {
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            if (password != confirmPassword) {
+                Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.signup(name, email, password)
         }
 
-        val tvLogin = view.findViewById<TextView>(R.id.tvLogin)
-        tvLogin.setOnClickListener {
+        view.findViewById<TextView>(R.id.tvLogin).setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -59,13 +66,15 @@ class SignupFragment : Fragment() {
         viewModel.authState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is AuthViewModel.AuthState.Loading -> {
-                    // Show loading if you have a progress bar
+                    // আপনি চাইলে এখানে প্রোগ্রেস বার দেখাতে পারেন
                 }
                 is AuthViewModel.AuthState.Success -> {
-                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Signup Successfully!", Toast.LENGTH_SHORT).show()
+                    // সফল হলে লগইন স্ক্রিনে ফিরে যাওয়া
                     findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                 }
                 is AuthViewModel.AuthState.Error -> {
+                    // এরর হলে টোস্ট মেসেজ দেখানো
                     Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                 }
             }

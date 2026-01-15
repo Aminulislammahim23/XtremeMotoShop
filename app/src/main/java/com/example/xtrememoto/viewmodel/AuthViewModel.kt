@@ -23,14 +23,19 @@ class AuthViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     val uid = task.result?.user?.uid
                     if (uid != null) {
-                        repository.saveUserToFirestore(uid, name, email)
-                            .addOnCompleteListener { firestoreTask ->
-                                if (firestoreTask.isSuccessful) {
-                                    _authState.value = AuthState.Success("Signup Successful")
-                                } else {
-                                    _authState.value = AuthState.Error(firestoreTask.exception?.message ?: "Firestore error")
-                                }
+                        // রিয়েলটাইম ডাটাবেসে ডাটা সেভ করা (আপনার আগের আর্কিটেকচার অনুযায়ী)
+                        val database = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("users")
+                        val userData = hashMapOf(
+                            "Name" to name,
+                            "Email" to email
+                        )
+                        database.child(uid).setValue(userData).addOnCompleteListener { dbTask ->
+                            if (dbTask.isSuccessful) {
+                                _authState.value = AuthState.Success("Signup Successful")
+                            } else {
+                                _authState.value = AuthState.Error(dbTask.exception?.message ?: "Database error")
                             }
+                        }
                     }
                 } else {
                     _authState.value = AuthState.Error(task.exception?.message ?: "Signup failed")
@@ -47,7 +52,6 @@ class AuthViewModel : ViewModel() {
                     if (uid != null) {
                         repository.updateLastLogin(uid)
                             .addOnCompleteListener { dbTask ->
-                                // We succeed even if lastLogin update fails
                                 _authState.value = AuthState.Success("Login Successful")
                             }
                     }
