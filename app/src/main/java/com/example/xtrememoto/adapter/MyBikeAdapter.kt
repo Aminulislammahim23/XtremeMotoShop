@@ -8,11 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
 import com.example.xtrememoto.model.Bike
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class MyBikeAdapter(private val bikeList: ArrayList<Bike>) :
     RecyclerView.Adapter<MyBikeAdapter.MyBikeViewHolder>() {
 
-    private var selectedPosition = 0
+    private var selectedPosition = -1
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseDatabase.getInstance().getReference("users")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyBikeViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,28 +26,44 @@ class MyBikeAdapter(private val bikeList: ArrayList<Bike>) :
 
     override fun onBindViewHolder(holder: MyBikeViewHolder, position: Int) {
         val bike = bikeList[position]
-        
-        // বাইকের নাম এবং মডেল সেট করা
         holder.tvBikeName.text = "${bike.name} ${bike.model}"
-        
-        // ইঞ্জিন নম্বর সেট করা
         holder.tvEngineNo.text = "Engine No: ${bike.engNum}"
-        
-        // রেজিস্ট্রেশন বা ফ্রি সার্ভিস (এখানে বাইকের রেজিস্ট্রেশন দেখানো হচ্ছে)
         holder.tvFreeService.text = "Reg: ${bike.reg}"
 
-        // সিলেকশন লজিক (রেডিও বাটন)
+        // সিলেকশন স্টেট দেখানো
         holder.rbSelected.isChecked = position == selectedPosition
 
         holder.itemView.setOnClickListener {
-            val lastPos = selectedPosition
-            selectedPosition = holder.adapterPosition
-            notifyItemChanged(lastPos)
-            notifyItemChanged(selectedPosition)
+            val currentPos = holder.adapterPosition
+            if (currentPos != RecyclerView.NO_POSITION) {
+                updateSelectedBikeInFirebase(bikeList[currentPos], currentPos)
+            }
         }
     }
 
+    private fun updateSelectedBikeInFirebase(bike: Bike, position: Int) {
+        val uid = auth.currentUser?.uid ?: return
+        
+        // selectedBike নোডে বাইকের ডাটা সেভ করা
+        database.child(uid).child("selectedBike").setValue(bike)
+            .addOnSuccessListener {
+                val oldPos = selectedPosition
+                selectedPosition = position
+                notifyItemChanged(oldPos)
+                notifyItemChanged(selectedPosition)
+            }
+    }
+
     override fun getItemCount(): Int = bikeList.size
+
+    // শুরুতে কোন বাইকটি সিলেক্ট করা আছে তা সেট করার জন্য (ঐচ্ছিক)
+    fun setSelectedBike(bikeName: String?) {
+        val index = bikeList.indexOfFirst { "${it.name} ${it.model}" == bikeName }
+        if (index != -1) {
+            selectedPosition = index
+            notifyDataSetChanged()
+        }
+    }
 
     class MyBikeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvBikeName: TextView = itemView.findViewById(R.id.tvBikeName)

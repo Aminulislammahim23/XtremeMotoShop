@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -36,55 +35,71 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
 
         val tvUserName = view.findViewById<TextView>(R.id.tvUserName)
+        val tvBikeName = view.findViewById<TextView>(R.id.tvBikeName)
         val user = auth.currentUser
-
 
         user?.let {
             val uid = it.uid
             val userRef = database.getReference("users").child(uid)
+            
+            // ইউজারের নাম নিয়ে আসা
             userRef.child("Name").get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
                     tvUserName.text = snapshot.value.toString()
                 }
             }
+
+            // সিলেক্টেড বাইকের নাম নিয়ে আসা (রিয়েল-টাইম আপডেট)
+            userRef.child("selectedBike").addValueEventListener(object : com.google.firebase.database.ValueEventListener {
+                override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val name = snapshot.child("name").value?.toString() ?: ""
+                        val model = snapshot.child("model").value?.toString() ?: ""
+                        tvBikeName.text = "$name $model".uppercase()
+                    }
+                }
+                override fun onCancelled(error: com.google.firebase.database.DatabaseError) {}
+            })
         }
 
-        val logoutButton = view.findViewById<ImageButton>(R.id.btnLogout)
-        logoutButton.setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnLogout).setOnClickListener {
             auth.signOut()
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
 
-        val btnChange = view.findViewById<Button>(R.id.btnChange)
-        btnChange.setOnClickListener {
+        view.findViewById<Button>(R.id.btnChange).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_myBikeFragment)
         }
 
-        val cvBikeDocs = view.findViewById<MaterialCardView>(R.id.cvBikeDocs)
-        cvBikeDocs.setOnClickListener {
+        setupNavigation(view)
+        setupExpandCollapse(view)
+    }
+
+    private fun setupNavigation(view: View) {
+        view.findViewById<MaterialCardView>(R.id.cvBikeDocs).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_documentsFragment)
         }
-
-        val cvServiceHistory = view.findViewById<MaterialCardView>(R.id.cvServiceHistory)
-        cvServiceHistory.setOnClickListener {
+        view.findViewById<MaterialCardView>(R.id.cvServiceHistory).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_serviceHistoryFragment)
         }
-
-        val cvServicePackages = view.findViewById<MaterialCardView>(R.id.cvServicePackages)
-        cvServicePackages.setOnClickListener {
+        view.findViewById<MaterialCardView>(R.id.cvServicePackages).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_servicePackageFragment)
         }
-
-        val cvTestRide = view.findViewById<MaterialCardView>(R.id.cvTestRide)
-        cvTestRide.setOnClickListener {
+        view.findViewById<MaterialCardView>(R.id.cvTestRide).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_bookTestRideFragment)
         }
-
-        val cvServiceBooking = view.findViewById<MaterialCardView>(R.id.cvServiceBooking)
-        cvServiceBooking.setOnClickListener {
+        view.findViewById<MaterialCardView>(R.id.cvServiceBooking).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_serviceBookingFragment)
         }
+        view.findViewById<MaterialCardView>(R.id.cvParts).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_partsFragment)
+        }
+        view.findViewById<MaterialCardView>(R.id.cvBikes).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_bikesFragment)
+        }
+    }
 
+    private fun setupExpandCollapse(view: View) {
         val ivExpandCollapse = view.findViewById<ImageView>(R.id.buttonExp)
         val expandableLayout = view.findViewById<LinearLayout>(R.id.expandable_layout)
 
@@ -96,16 +111,6 @@ class HomeFragment : Fragment() {
                 expandableLayout.visibility = View.VISIBLE
                 ivExpandCollapse.setImageResource(R.drawable.ic_expand_less)
             }
-        }
-
-        val cvParts = view.findViewById<MaterialCardView>(R.id.cvParts)
-        cvParts.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_partsFragment)
-        }
-
-        val cvBikes = view.findViewById<MaterialCardView>(R.id.cvBikes)
-        cvBikes.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_bikesFragment)
         }
     }
 }
