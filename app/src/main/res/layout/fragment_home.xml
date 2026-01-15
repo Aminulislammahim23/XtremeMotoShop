@@ -160,16 +160,15 @@
                         android:src="@drawable/ic_bike_placeholder" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivExpandCollapse"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                <ImageButton
+                    android:id="@+id/buttonExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/expand_collapse"
                     android:src="@drawable/ic_expand_more" />
-
-                <!-- ইটা সেই এক্সপ্যান্ডেবল লেআউট যা কোডে ব্যবহার করা হয়েছে -->
                 <LinearLayout
                     android:id="@+id/expandable_layout"
                     android:layout_width="match_parent"
@@ -181,8 +180,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next Service Detail Information goes here..."
+                        android:text="Click here to swap your bikes..."
                         android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/btnChange"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="@color/suzuki_blue"
+                        android:text="Change"
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
             </LinearLayout>

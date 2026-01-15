@@ -29,6 +29,21 @@ class ServicePackageFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        val btn1Book = view.findViewById<Button>(R.id.btn1Book)
+        btn1Book.setOnClickListener {
+            findNavController().navigate(R.id.action_servicePackageFragment_to_addServiceBookingFragment)
+        }
+
+        val btn2Book = view.findViewById<Button>(R.id.btn2Book)
+        btn2Book.setOnClickListener {
+            findNavController().navigate(R.id.action_servicePackageFragment_to_addServiceBookingFragment)
+        }
+
+        val btn3Book = view.findViewById<Button>(R.id.btn3Book)
+        btn3Book.setOnClickListener {
+            findNavController().navigate(R.id.action_servicePackageFragment_to_addServiceBookingFragment)
+        }
+
         val llExecutiveMore = view.findViewById<LinearLayout>(R.id.llExecutiveMore)
         val btnExecutiveViewMore = view.findViewById<Button>(R.id.btnExecutiveViewMore)
         btnExecutiveViewMore.setOnClickListener {

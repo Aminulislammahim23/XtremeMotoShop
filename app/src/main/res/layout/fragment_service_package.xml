@@ -111,6 +111,7 @@
                     android:text="BDT 550.00" />
 
                 <Button
+                    android:id="@+id/btn1Book"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -200,6 +201,7 @@
                     android:text="BDT 700.00" />
 
                 <Button
+                    android:id="@+id/btn2Book"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -289,6 +291,7 @@
                     android:text="BDT 1450.00" />
 
                 <Button
+                    android:id="@+id/btn3Book"
                     android.text="Book Now"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

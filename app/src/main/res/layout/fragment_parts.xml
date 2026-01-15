@@ -4,121 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.shop.PartsFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back Button"
+        android:padding="16dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parts"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+    <ImageView
+        android:id="@+id/ivSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="Search Icon"
+        android:padding="16dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBack"
+        app:tint="@color/black" />
+
+    <HorizontalScrollView
+        android:id="@+id/hsvCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/colorBackground"
-        app:elevation="0dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:clipToPadding="false"
+        android:paddingVertical="8dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="85dp">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            app:checkedChip="@+id/chipAll"
+            app:singleLine="true"
+            app:singleSelection="true">
 
-            <TextView
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Parts"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="All" />
 
-            <ImageView
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAccessories"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_search"
-                app:tint="@color/black"
-                android:layout_marginEnd="16dp"/>
+                android:text="Accessories" />
 
-        </androidx.appcompat.widget.Toolbar>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBodyParts"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Body Parts" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBrakeSystem"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brake System" />
 
-    <androidx.core.widget.NestedScrollView
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipControlSystem"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Control System" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipElectrical"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electrical" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEngine"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Engine" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFuelSystem"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fuel System" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLighting"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lighting" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMaintenance"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maintenance" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSuspension"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suspension" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTransmission"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transmission" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipWheelsTires"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheels &amp; Tires" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPartsList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar">
+        app:layout_constraintTop_toBottomOf="@id/hsvCategories"
+        tools:listitem="@layout/item_part" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Category 1 -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Essential Parts"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="See all"
-                    android:textColor="@color/suzuki_blue"/>
-            </RelativeLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <include layout="@layout/item_part" />
-                    <include layout="@layout/item_part" />
-                    <include layout="@layout/item_part" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Category 2 -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Accessories"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="See all"
-                    android:textColor="@color/suzuki_blue"/>
-            </RelativeLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <include layout="@layout/item_part" />
-                    <include layout="@layout/item_part" />
-                    <include layout="@layout/item_part" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No data found from server."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hsvCategories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

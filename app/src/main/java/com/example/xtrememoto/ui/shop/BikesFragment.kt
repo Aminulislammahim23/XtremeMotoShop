@@ -2,8 +2,10 @@ package com.example.xtrememoto.ui.shop
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
@@ -24,15 +26,22 @@ class BikesFragment : Fragment(R.layout.fragment_bikes) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // ভিউগুলো খুঁজে বের করা
         rvBikes = view.findViewById(R.id.rvBikes)
         chipGroupCategories = view.findViewById(R.id.chipGroupCategories)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         
         rvBikes.layoutManager = GridLayoutManager(requireContext(), 2)
         
         adapter = ShopBikeAdapter { bike ->
-            // ডিটেইল স্ক্রিনে যাওয়ার লজিক
+            // ডিটেইল স্ক্রিনে যাওয়ার লজিক এখানে যোগ করতে পারেন
         }
         rvBikes.adapter = adapter
+
+        // ব্যাক বাটন ক্লিক লজিক
+        btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         loadBikes()
         setupChipListeners()
@@ -68,6 +77,7 @@ class BikesFragment : Fragment(R.layout.fragment_bikes) {
         }
         adapter.submitList(filteredList)
         
+        // No data found logic handles by XML or Toast
         if (filteredList.isEmpty() && allBikes.isNotEmpty()) {
             Toast.makeText(requireContext(), "No bikes in this category", Toast.LENGTH_SHORT).show()
         }

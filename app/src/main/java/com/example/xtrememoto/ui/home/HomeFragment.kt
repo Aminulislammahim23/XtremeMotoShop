@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -37,10 +38,9 @@ class HomeFragment : Fragment() {
         val tvUserName = view.findViewById<TextView>(R.id.tvUserName)
         val user = auth.currentUser
 
-        // ইউজার লগইন করা থাকলে তার নাম ডাটাবেস থেকে নিয়ে আসা
+
         user?.let {
             val uid = it.uid
-            // আপনার ইমেজ অনুযায়ী পাথ হলো "users" এবং কি হলো "Name"
             val userRef = database.getReference("users").child(uid)
             userRef.child("Name").get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
@@ -51,8 +51,13 @@ class HomeFragment : Fragment() {
 
         val logoutButton = view.findViewById<ImageButton>(R.id.btnLogout)
         logoutButton.setOnClickListener {
-            auth.signOut() // Firebase থেকে সাইন আউট করা
+            auth.signOut()
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        }
+
+        val btnChange = view.findViewById<Button>(R.id.btnChange)
+        btnChange.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_myBikeFragment)
         }
 
         val cvBikeDocs = view.findViewById<MaterialCardView>(R.id.cvBikeDocs)
@@ -80,7 +85,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_serviceBookingFragment)
         }
 
-        val ivExpandCollapse = view.findViewById<ImageView>(R.id.ivExpandCollapse)
+        val ivExpandCollapse = view.findViewById<ImageView>(R.id.buttonExp)
         val expandableLayout = view.findViewById<LinearLayout>(R.id.expandable_layout)
 
         ivExpandCollapse.setOnClickListener {
