@@ -36,30 +36,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="74dp"
         android:backgroundTint="@color/suzuki_blue"
         android:drawableLeft="@drawable/ic_add_circle"
         android:text="Add New Booking"
-        app:layout_constraintTop_toBottomOf="@id/tvServiceBooking"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvServiceBooking" />
 
-    <ImageView
-        android:id="@+id/ivNoBooking"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBookings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddBooking" />
+
+    <LinearLayout
+        android:id="@+id/llNoBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_no_service_booked"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddBooking">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="No service has been booked yet"
-        app:layout_constraintEnd_toEndOf="@id/ivNoBooking"
-        app:layout_constraintStart_toStartOf="@id/ivNoBooking"
-        app:layout_constraintTop_toBottomOf="@id/ivNoBooking" />
+        <ImageView
+            android:id="@+id/ivNoBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_no_service_booked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No service has been booked yet" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

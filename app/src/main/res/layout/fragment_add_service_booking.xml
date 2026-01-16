@@ -9,9 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnNext"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -142,11 +140,12 @@
                     android:layout_marginTop="8dp">
 
                     <AutoCompleteTextView
-                        android:id="@+id/acTVselectDealera"
+                        android:id="@+id/acTVselectDealer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Select Dealer"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -168,7 +167,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Select Category"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -204,7 +204,8 @@
                                 android:layout_height="wrap_content"
                                 android:hint="15 Jan 2026"
                                 android:focusable="false"
-                                android:clickable="true" />
+                                android:clickable="true"
+                                android:textColor="@color/black" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -235,7 +236,8 @@
                                 android:layout_height="wrap_content"
                                 android:hint="Time"
                                 android:focusable="false"
-                                android:clickable="true" />
+                                android:clickable="true"
+                                android:textColor="@color/black" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -260,21 +262,21 @@
                         android:layout_height="wrap_content"
                         android:hint="Write here"
                         android:gravity="top"
-                        android:minLines="3" />
+                        android:minLines="3"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnBook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Book Now"
+                    android:backgroundTint="@color/suzuki_blue_dark" />
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Book Now"
-        android:backgroundTint="@color/suzuki_blue_dark"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

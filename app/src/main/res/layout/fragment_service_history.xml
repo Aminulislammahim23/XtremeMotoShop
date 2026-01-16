@@ -39,4 +39,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_service_history"/>
 
+    <TextView
+        android:id="@+id/tvNoHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No service history found"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvServiceHistory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

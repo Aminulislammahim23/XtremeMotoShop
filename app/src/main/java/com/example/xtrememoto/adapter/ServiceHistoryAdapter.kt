@@ -6,14 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
+import com.example.xtrememoto.ui.service.BookingModel
 
-class ServiceHistoryAdapter : RecyclerView.Adapter<ServiceHistoryAdapter.ServiceHistoryViewHolder>() {
-
-    // Placeholder data
-    private val serviceHistoryItems = listOf(
-        ServiceHistory("27 Nov, 2025", "Completed", "Free", "CSR-1079032", "Schedule Service", "2988", "SUZUKI 5S ARENA"),
-        ServiceHistory("15 Oct, 2024", "Completed", "Paid", "CSR-1065432", "Breakdown Service", "2500", "SUZUKI 5S ARENA")
-    )
+class ServiceHistoryAdapter(
+    private var list: List<BookingModel>,
+    private val onItemClick: (BookingModel) -> Unit
+) : RecyclerView.Adapter<ServiceHistoryAdapter.ServiceHistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceHistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,19 +20,24 @@ class ServiceHistoryAdapter : RecyclerView.Adapter<ServiceHistoryAdapter.Service
     }
 
     override fun onBindViewHolder(holder: ServiceHistoryViewHolder, position: Int) {
-        val item = serviceHistoryItems[position]
+        val item = list[position]
         holder.tvDate.text = "Date: ${item.date}"
         holder.tvStatus.text = item.status
-        holder.tvFree.text = item.type
-        holder.tvServiceId.text = "Service ID: ${item.serviceId}"
-        holder.tvServiceType.text = "Service Type: ${item.serviceType}"
-        holder.tvOdometer.text = "Odometer (KMs): ${item.odometer}"
-        holder.tvServiceCenter.text = "Service Center: ${item.serviceCenter}"
+        holder.tvServiceType.text = "Service Type: ${item.category}"
+        holder.tvServiceCenter.text = "Service Center: ${item.dealer}"
+        
+        // আইডি এবং ওডোমিটার ডাটাবেসে না থাকলে হাইড বা টাইম শো করা হয়েছে
+        holder.tvServiceId.text = "Time: ${item.time}"
+        holder.tvOdometer.visibility = View.GONE
+        holder.tvFree.visibility = View.GONE
+
+        // View Details ক্লিক হ্যান্ডেল
+        holder.tvViewDetails.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return serviceHistoryItems.size
-    }
+    override fun getItemCount(): Int = list.size
 
     class ServiceHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
@@ -44,15 +47,6 @@ class ServiceHistoryAdapter : RecyclerView.Adapter<ServiceHistoryAdapter.Service
         val tvServiceType: TextView = itemView.findViewById(R.id.tvServiceType)
         val tvOdometer: TextView = itemView.findViewById(R.id.tvOdometer)
         val tvServiceCenter: TextView = itemView.findViewById(R.id.tvServiceCenter)
+        val tvViewDetails: TextView = itemView.findViewById(R.id.tvViewDetails)
     }
-
-    data class ServiceHistory(
-        val date: String,
-        val status: String,
-        val type: String,
-        val serviceId: String,
-        val serviceType: String,
-        val odometer: String,
-        val serviceCenter: String
-    )
 }

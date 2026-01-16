@@ -1,6 +1,7 @@
 package com.example.xtrememoto.model
 
 data class Bike(
+    var id: String? = null, // Firebase key
     val name: String? = null,
     val model: String? = null,
     val color: String? = null,

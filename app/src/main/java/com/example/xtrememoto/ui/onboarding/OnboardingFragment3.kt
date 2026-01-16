@@ -37,7 +37,7 @@ class OnboardingFragment3 : Fragment() {
         val tvSkip = view.findViewById<TextView>(R.id.tvSkip)
         tvSkip.visibility = View.GONE
 
-        val btnNext = view.findViewById<ImageView>(R.id.btnNext)
+        val btnNext = view.findViewById<ImageView>(R.id.btnBook)
         btnNext.visibility = View.GONE
 
         val btnLetsStart = view.findViewById<Button>(R.id.btnLetsStart)

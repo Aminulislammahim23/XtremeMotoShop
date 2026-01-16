@@ -38,7 +38,7 @@ class OnboardingFragment1 : Fragment() {
             findNavController().navigate(R.id.action_onboardingFragment1_to_loginFragment)
         }
 
-        val btnNext = view.findViewById<ImageView>(R.id.btnNext)
+        val btnNext = view.findViewById<ImageView>(R.id.btnBook)
         btnNext.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment1_to_onboardingFragment2)
         }
