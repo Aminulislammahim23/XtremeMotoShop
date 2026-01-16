@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="text" />
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,10 +73,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/tvForgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Forgot Password?"
                 android:layout_gravity="end"
+                android:textColor="@color/suzuki_blue"
+                android:padding="4dp"
                 android:layout_marginTop="8dp"/>
 
             <Button
@@ -103,6 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign up!"
+                    android:textColor="@color/suzuki_blue"
                     android:textStyle="bold"/>
 
             </LinearLayout>

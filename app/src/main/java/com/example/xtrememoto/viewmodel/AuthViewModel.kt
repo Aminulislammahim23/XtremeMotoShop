@@ -1,14 +1,17 @@
 package com.example.xtrememoto.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.xtrememoto.repository.AuthRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class AuthViewModel : ViewModel() {
 
     private val repository = AuthRepository()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> get() = _authState
@@ -23,7 +26,6 @@ class AuthViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     val uid = task.result?.user?.uid
                     if (uid != null) {
-                        // রিয়েলটাইম ডাটাবেসে ডাটা সেভ করা (আপনার আগের আর্কিটেকচার অনুযায়ী)
                         val database = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("users")
                         val userData = hashMapOf(
                             "Name" to name,
@@ -59,6 +61,20 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState.Error(task.exception?.message ?: "Login failed")
                 }
             }
+    }
+
+    fun resetPassword(email: String) {
+        _authState.value = AuthState.Loading
+        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("FirebaseAuth", "Reset email sent to: $email")
+                _authState.value = AuthState.Success("Reset link sent to your email")
+            } else {
+                val error = task.exception?.message ?: "Failed to send reset email"
+                Log.e("FirebaseAuth", "Error sending reset email: $error")
+                _authState.value = AuthState.Error(error)
+            }
+        }
     }
 
     fun logout() {
