@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -33,9 +34,12 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var acTVselectDivision: AutoCompleteTextView
     private lateinit var acTVselectDistrict: AutoCompleteTextView
+    private lateinit var acTVselectCategory: AutoCompleteTextView
+    private lateinit var acTVselectDealer: AutoCompleteTextView
     private lateinit var database: FirebaseDatabase
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var mapView: MapView
+    private lateinit var llBookingDetails: LinearLayout
     private var googleMap: GoogleMap? = null
 
     override fun onCreateView(
@@ -55,10 +59,14 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
         database = FirebaseDatabase.getInstance()
         acTVselectDivision = view.findViewById(R.id.acTVselectDivision)
         acTVselectDistrict = view.findViewById(R.id.acTVselectDistrict)
+        acTVselectCategory = view.findViewById(R.id.acTVselectCategory)
+        acTVselectDealer = view.findViewById(R.id.acTVselectDealera)
+        llBookingDetails = view.findViewById(R.id.llBookingDetails)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         fetchDivisions()
         fetchDistricts()
+        fetchCategories()
 
         view.findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             findNavController().popBackStack()
@@ -67,11 +75,27 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
         view.findViewById<Button>(R.id.btnCurrentLocation).setOnClickListener {
             requestLocationPermission()
         }
+
+        view.findViewById<Button>(R.id.btnSearch).setOnClickListener {
+            val division = acTVselectDivision.text.toString()
+            val district = acTVselectDistrict.text.toString()
+
+            if (division.isNotEmpty() && district.isNotEmpty()) {
+                llBookingDetails.visibility = View.VISIBLE
+            } else {
+                Toast.makeText(requireContext(), "Please select Division and District", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Dummy dealers
+        val dealers = listOf("Uttara Motors", "Xtreme Suzuki", "Navana Suzuki")
+        val dealerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, dealers)
+        acTVselectDealer.setAdapter(dealerAdapter)
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-        // ডিফল্ট ঢাকা সেট করে রাখছি
+        // Default Dhaka
         val defaultLocation = LatLng(23.8103, 90.4125)
         googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
     }
@@ -124,6 +148,33 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
+    private fun fetchCategories() {
+        val categoryRef = database.getReference("service/categories")
+        categoryRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (!isAdded) return
+                val categories = mutableListOf<String>()
+                if (snapshot.exists()) {
+                    for (child in snapshot.children) {
+                        val name = child.child("name").value?.toString()
+                        if (name != null) {
+                            categories.add(name)
+                        }
+                    }
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_dropdown_item_1line,
+                        categories
+                    )
+                    acTVselectCategory.setAdapter(adapter)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FirebaseError", "Category error: ${error.message}")
+            }
+        })
+    }
+
     private fun requestLocationPermission() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
@@ -138,11 +189,12 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap?.clear() // আগের মার্কার মুছে ফেলা
+                googleMap?.clear() 
                 googleMap?.addMarker(MarkerOptions().position(currentLatLng).title("Your Location"))
                 googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
 
                 Toast.makeText(context, "Location Found", Toast.LENGTH_SHORT).show()
+                llBookingDetails.visibility = View.VISIBLE
             } else {
                 Toast.makeText(context, "Unable to find location. Is GPS on?", Toast.LENGTH_SHORT).show()
             }
@@ -155,7 +207,6 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    // MapView এর লাইফসাইকেল হ্যান্ডেল করা জরুরি
     override fun onResume() { super.onResume(); mapView.onResume() }
     override fun onPause() { super.onPause(); mapView.onPause() }
     override fun onDestroy() { super.onDestroy(); mapView.onDestroy() }
