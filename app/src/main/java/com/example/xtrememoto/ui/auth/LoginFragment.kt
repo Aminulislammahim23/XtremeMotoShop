@@ -1,8 +1,6 @@
 package com.example.xtrememoto.ui.auth
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.xtrememoto.R
 import com.example.xtrememoto.viewmodel.AuthViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginFragment : Fragment() {
 
@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
         }
 
         tvForgotPassword.setOnClickListener {
-            showForgotPasswordDialog()
+            showForgotPasswordBottomSheet()
         }
 
         tvSignUp.setOnClickListener {
@@ -59,38 +59,34 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun showForgotPasswordDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Reset Password")
-
-        val input = EditText(requireContext())
-        val currentEmail = etEmail.text.toString().trim()
-        input.setText(currentEmail)
-        input.hint = "Enter your registered email"
-        // Fixed InputType for better keyboard support
-        input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+    private fun showForgotPasswordBottomSheet() {
+        val dialog = BottomSheetDialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
         
-        val container = LinearLayout(requireContext())
-        container.orientation = LinearLayout.VERTICAL
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        lp.setMargins(60, 40, 60, 0)
-        input.layoutParams = lp
-        container.addView(input)
-        builder.setView(container)
+        val etResetEmail = view.findViewById<TextInputEditText>(R.id.etResetEmail)
+        val btnSend = view.findViewById<Button>(R.id.btnSendResetLink)
+        val tvCancel = view.findViewById<TextView>(R.id.tvCancel)
 
-        builder.setPositiveButton("Send Link") { _, _ ->
-            val email = input.text.toString().trim()
+        // পপআপ বক্সে কারেন্ট ইমেইল অটো-ফিল করা
+        val currentEmail = etEmail.text.toString().trim()
+        etResetEmail.setText(currentEmail)
+
+        btnSend.setOnClickListener {
+            val email = etResetEmail.text.toString().trim()
             if (email.isNotEmpty()) {
                 viewModel.resetPassword(email)
+                dialog.dismiss()
             } else {
-                Toast.makeText(context, "Please enter your email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please enter your email address", Toast.LENGTH_SHORT).show()
             }
         }
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
+
+        tvCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(view)
+        dialog.show()
     }
 
     private fun observeViewModel(btnLogin: Button) {

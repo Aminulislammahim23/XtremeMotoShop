@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,7 +70,7 @@ class ServiceBookingFragment : Fragment() {
                         val booking = child.getValue(BookingModel::class.java)
                         booking?.let { bookingList.add(it) }
                     }
-                    bookingList.reverse() // লেটেস্ট বুকিং উপরে দেখানোর জন্য
+                    bookingList.reverse() // নতুন বুকিং উপরে দেখানোর জন্য
                     adapter.notifyDataSetChanged()
                     
                     rvBookings.visibility = View.VISIBLE
@@ -87,7 +88,9 @@ class ServiceBookingFragment : Fragment() {
     }
 }
 
+// Model updated to include all fields correctly from DB
 data class BookingModel(
+    val bikeName: String = "",
     val dealer: String = "",
     val category: String = "",
     val date: String = "",
@@ -99,11 +102,11 @@ class ServiceBookingAdapter(private val list: List<BookingModel>) :
     RecyclerView.Adapter<ServiceBookingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvDealer: android.widget.TextView = view.findViewById(R.id.tvDealerName)
-        val tvCategory: android.widget.TextView = view.findViewById(R.id.tvCategory)
-        val tvDate: android.widget.TextView = view.findViewById(R.id.tvDate)
-        val tvTime: android.widget.TextView = view.findViewById(R.id.tvTime)
-        val tvStatus: android.widget.TextView = view.findViewById(R.id.tvStatus)
+        val tvDealer: TextView = view.findViewById(R.id.tvDealerName)
+        val tvCategory: TextView = view.findViewById(R.id.tvCategory)
+        val tvDate: TextView = view.findViewById(R.id.tvDate)
+        val tvTime: TextView = view.findViewById(R.id.tvTime)
+        val tvStatus: TextView = view.findViewById(R.id.tvStatus)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -113,7 +116,8 @@ class ServiceBookingAdapter(private val list: List<BookingModel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        holder.tvDealer.text = item.dealer
+        // Dealer নামের বদলে এখন আমরা চাইলে বাইকের নামও এখানে শো করতে পারি
+        holder.tvDealer.text = if (item.bikeName.isNotEmpty()) "${item.bikeName} (${item.dealer})" else item.dealer
         holder.tvCategory.text = item.category
         holder.tvDate.text = item.date
         holder.tvTime.text = item.time

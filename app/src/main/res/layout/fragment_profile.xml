@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/tvProfileTitle"
-        android:layout_width="151dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Profile"
         android:textAlignment="center"
@@ -37,12 +37,15 @@
             android:gravity="center_horizontal"
             android:padding="16dp">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivProfileImage"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_profile_placeholder"
-                android:background="@drawable/circle_background"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle"
+                app:strokeColor="@color/suzuki_blue"
+                app:strokeWidth="2dp"
                 android:contentDescription="@string/profile_image" />
 
             <TextView
@@ -85,7 +88,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_profile_placeholder"
-                    android:tint="@color/suzuki_blue"/>
+                    app:tint="@color/suzuki_blue"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -121,7 +124,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_bike_placeholder"
-                    android:tint="@color/suzuki_blue"/>
+                    app:tint="@color/suzuki_blue"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -157,7 +160,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_bike_docs"
-                    android:tint="@color/suzuki_blue"/>
+                    app:tint="@color/suzuki_blue"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -193,7 +196,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_password"
-                    android:tint="@color/suzuki_blue"/>
+                    app:tint="@color/suzuki_blue"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -229,7 +232,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_contact_us"
-                    android:tint="@color/suzuki_blue"/>
+                    app:tint="@color/suzuki_blue"/>
 
                 <TextView
                     android:layout_width="0dp"

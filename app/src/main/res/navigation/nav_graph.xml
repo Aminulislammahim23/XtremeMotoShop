@@ -74,6 +74,18 @@
         <action
             android:id="@+id/action_homeFragment_to_myBikeFragment"
             app:destination="@id/myBikeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dealerFragment"
+            app:destination="@id/dealerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceScheduleFragment"
+            app:destination="@id/serviceScheduleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_warrantyFragment"
+            app:destination="@id/warrantyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offersFragment"
+            app:destination="@id/offersFragment" />
     </fragment>
 
     <!-- Bike -->
@@ -141,6 +153,30 @@
             android:id="@+id/action_servicePackageFragment_to_addServiceBookingFragment"
             app:destination="@id/addServiceBookingFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/dealerFragment"
+        android:name="com.example.xtrememoto.ui.service.DealerFragment"
+        android:label="fragment_dealer"
+        tools:layout="@layout/fragment_dealer" />
+
+    <fragment
+        android:id="@+id/serviceScheduleFragment"
+        android:name="com.example.xtrememoto.ui.service.ServiceScheduleFragment"
+        android:label="fragment_service_schedule"
+        tools:layout="@layout/fragment_service_schedule" />
+
+    <fragment
+        android:id="@+id/warrantyFragment"
+        android:name="com.example.xtrememoto.ui.service.WarrantyFragment"
+        android:label="fragment_warranty"
+        tools:layout="@layout/fragment_warranty" />
+
+    <fragment
+        android:id="@+id/offersFragment"
+        android:name="com.example.xtrememoto.ui.service.OffersFragment"
+        android:label="fragment_offers"
+        tools:layout="@layout/fragment_offers" />
 
     <fragment
         android:id="@+id/bookTestRideFragment"

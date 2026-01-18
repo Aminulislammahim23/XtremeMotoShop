@@ -144,51 +144,59 @@ class AddServiceBookingFragment : Fragment(), OnMapReadyCallback {
             return
         }
 
-        // service নোডের রেফারেন্স নেওয়া হচ্ছে (যেখানে booking এবং history উভয়ই আছে)
-        val serviceRef = database.getReference("users").child(uid).child("service")
-        
-        serviceRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // booking এবং history নোডের বর্তমান সংখ্যা অনুযায়ী পরবর্তী নিউমেরিক আইডি জেনারেট করা
-                val bookingCount = snapshot.child("booking").childrenCount
-                val historyCount = snapshot.child("history").childrenCount
-                
-                val nextBookingId = (bookingCount + 1).toString()
-                val nextHistoryId = (historyCount + 1).toString()
+        // প্রথমে ইউজারের সিলেক্ট করা বাইকের নাম ফেচ করা হচ্ছে
+        val userRef = database.getReference("users").child(uid)
+        userRef.child("selectedBike").get().addOnSuccessListener { bikeSnapshot ->
+            val bikeName = if (bikeSnapshot.exists()) {
+                val name = bikeSnapshot.child("name").value?.toString() ?: ""
+                val model = bikeSnapshot.child("model").value?.toString() ?: ""
+                "$name $model".trim()
+            } else {
+                "Unknown Bike"
+            }
 
-                val bookingData = hashMapOf(
-                    "division" to division,
-                    "district" to district,
-                    "dealer" to dealer,
-                    "category" to category,
-                    "date" to date,
-                    "time" to time,
-                    "note" to note,
-                    "status" to "Pending",
-                    "timestamp" to System.currentTimeMillis()
-                )
+            // বাইকের নাম পাওয়ার পর বুকিং সেভ করা হচ্ছে
+            val serviceRef = userRef.child("service")
+            serviceRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val bookingCount = snapshot.child("booking").childrenCount
+                    val historyCount = snapshot.child("history").childrenCount
+                    
+                    val nextBookingId = (bookingCount + 1).toString()
+                    val nextHistoryId = (historyCount + 1).toString()
 
-                // মাল্টিপল পাথে ডাটা সেভ করার জন্য updates ম্যাপ তৈরি
-                val updates = hashMapOf<String, Any>(
-                    "booking/$nextBookingId" to bookingData,
-                    "history/$nextHistoryId" to bookingData
-                )
+                    val bookingData = hashMapOf(
+                        "bikeName" to bikeName,
+                        "division" to division,
+                        "district" to district,
+                        "dealer" to dealer,
+                        "category" to category,
+                        "date" to date,
+                        "time" to time,
+                        "note" to note,
+                        "status" to "Pending",
+                        "timestamp" to System.currentTimeMillis()
+                    )
 
-                // updateChildren ব্যবহার করে একসাথেই booking এবং history-তে ডাটা সেভ করা হচ্ছে
-                serviceRef.updateChildren(updates).addOnCompleteListener { task ->
-                    if (task.isSuccessful && isAdded) {
-                        Toast.makeText(context, "Booking successful!", Toast.LENGTH_SHORT).show()
-                        findNavController().popBackStack()
-                    } else {
-                        Toast.makeText(context, "Booking failed. Please try again.", Toast.LENGTH_SHORT).show()
+                    val updates = hashMapOf<String, Any>(
+                        "booking/$nextBookingId" to bookingData,
+                        "history/$nextHistoryId" to bookingData
+                    )
+
+                    serviceRef.updateChildren(updates).addOnCompleteListener { task ->
+                        if (task.isSuccessful && isAdded) {
+                            Toast.makeText(context, "Booking successful!", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        } else {
+                            Toast.makeText(context, "Booking failed. Please try again.", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("AddServiceBooking", "Database Error: ${error.message}")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }.addOnFailureListener {
+            Toast.makeText(context, "Failed to retrieve bike info", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun fetchCategories() {
