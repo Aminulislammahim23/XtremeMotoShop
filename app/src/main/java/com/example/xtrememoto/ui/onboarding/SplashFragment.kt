@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.xtrememoto.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class SplashFragment : Fragment() {
 
@@ -28,18 +29,36 @@ class SplashFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            checkUserSession()
+            checkUserSessionAndRole()
         }, 2000) // 2 second delay
     }
 
-    private fun checkUserSession() {
+    private fun checkUserSessionAndRole() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            // যদি ইউজার লগইন করা থাকে, সরাসরি HomeFragment-এ নিয়ে যাবে
-            // নিশ্চিত করুন আপনার nav_graph-এ এই অ্যাকশনটি আছে অথবা সরাসরি ID ব্যবহার করুন
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+            val uid = currentUser.uid
+            val userRef = FirebaseDatabase.getInstance().getReference("users").child(uid)
+
+            // ডাটাবেস থেকে ইউজারের রোল রিড করা হচ্ছে
+            userRef.child("role").get().addOnSuccessListener { snapshot ->
+                if (isAdded) {
+                    val role = snapshot.value?.toString() ?: "customer"
+                    if (role == "admin") {
+                        // যদি রোল admin হয় তবে সরাসরি AdminFragment এ যাবে
+                        findNavController().navigate(R.id.action_splashFragment_to_adminFragment)
+                    } else {
+                        // যদি রোল customer হয় তবে সরাসরি HomeFragment এ যাবে
+                        findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                    }
+                }
+            }.addOnFailureListener {
+                if (isAdded) {
+                    // এরর হলে ডিফল্টভাবে হোমে পাঠাবে
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+            }
         } else {
-            // লগইন করা না থাকলে Onboarding-এ পাঠাবে
+            // লগইন করা না থাকলে অনবোর্ডিং এ পাঠাবে
             findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment1)
         }
     }

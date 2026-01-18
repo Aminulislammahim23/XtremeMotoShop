@@ -27,9 +27,11 @@ class AuthViewModel : ViewModel() {
                     val uid = task.result?.user?.uid
                     if (uid != null) {
                         val database = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("users")
+                        // আপনার চাহিদা অনুযায়ী role: "customer" যোগ করা হয়েছে
                         val userData = hashMapOf(
                             "Name" to name,
-                            "Email" to email
+                            "Email" to email,
+                            "role" to "customer"
                         )
                         database.child(uid).setValue(userData).addOnCompleteListener { dbTask ->
                             if (dbTask.isSuccessful) {

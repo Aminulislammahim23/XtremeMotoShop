@@ -12,6 +12,8 @@ import com.example.xtrememoto.R
 import com.example.xtrememoto.viewmodel.AuthViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginFragment : Fragment() {
 
@@ -67,7 +69,6 @@ class LoginFragment : Fragment() {
         val btnSend = view.findViewById<Button>(R.id.btnSendResetLink)
         val tvCancel = view.findViewById<TextView>(R.id.tvCancel)
 
-        // পপআপ বক্সে কারেন্ট ইমেইল অটো-ফিল করা
         val currentEmail = etEmail.text.toString().trim()
         etResetEmail.setText(currentEmail)
 
@@ -97,15 +98,40 @@ class LoginFragment : Fragment() {
                 }
                 is AuthViewModel.AuthState.Success -> {
                     btnLogin.isEnabled = true
-                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                     if (state.message == "Login Successful") {
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        checkUserRoleAndNavigate()
+                    } else {
+                        Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                     }
                 }
                 is AuthViewModel.AuthState.Error -> {
                     btnLogin.isEnabled = true
                     Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+    }
+
+    private fun checkUserRoleAndNavigate() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(uid)
+
+        userRef.child("role").get().addOnSuccessListener { snapshot ->
+            if (isAdded) {
+                val role = snapshot.value?.toString() ?: "customer"
+                if (role == "admin") {
+                    // অ্যাডমিন হলে AdminFragment-এ নিয়ে যাবে
+                    // নিশ্চিত করুন nav_graph-এ এই অ্যাকশনটি আছে
+                    findNavController().navigate(R.id.action_loginFragment_to_adminFragment)
+                } else {
+                    // কাস্টমার হলে HomeFragment-এ নিয়ে যাবে
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                }
+            }
+        }.addOnFailureListener {
+            if (isAdded) {
+                // কোনো কারণে রোল চেক ব্যর্থ হলে ডিফল্টভাবে হোমে নিয়ে যাবে
+                findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             }
         }
     }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:padding="24dp">
+
+    <View
+        android:id="@+id/viewDragHandle"
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:background="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAddOfferTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Add New Offer"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDragHandle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOfferTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvAddOfferTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOfferTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Offer Title" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOfferDesc"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tilOfferTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOfferDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOfferExpiry"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tilOfferDesc">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOfferExpiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expiry Date (e.g. 20 Jan 2026)" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOfferButtonText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tilOfferExpiry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOfferButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Button Text (Default: Book Now)" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSaveOffer"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/suzuki_blue"
+        android:text="Save Offer"
+        android:textAllCaps="false"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tilOfferButtonText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
