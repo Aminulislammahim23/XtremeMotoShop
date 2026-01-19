@@ -25,9 +25,6 @@ class PartsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_parts, container, false)
 
         // RecyclerView Setup
-        // যেহেতু আপনার fragment_parts.xml এ HorizontalScrollView আছে, 
-        // আমি এখানে একটি ডাইনামিক অ্যাডাপ্টার সেটআপ করছি।
-        
         val rvParts = view.findViewById<RecyclerView>(R.id.rvPartsList) ?: return view
         partAdapter = PartAdapter(emptyList())
         rvParts.layoutManager = GridLayoutManager(requireContext(), 2)

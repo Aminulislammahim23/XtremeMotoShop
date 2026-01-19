@@ -21,11 +21,16 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.splashFragment,
-                    R.id.onboardingFragment1,
-                    R.id.onboardingFragment2,
-                    R.id.onboardingFragment3,
-                    R.id.signupFragment,
-                R.id.loginFragment -> {
+                R.id.onboardingFragment1,
+                R.id.onboardingFragment2,
+                R.id.onboardingFragment3,
+                R.id.signupFragment,
+                R.id.loginFragment,
+                R.id.adminFragment,
+                R.id.adminOffersFragment,
+                R.id.adminBikesFragment,
+                R.id.adminPartsFragment,
+                R.id.adminBookingFragment -> {
                     bottomNav.visibility = View.GONE
                 }
                 else -> {

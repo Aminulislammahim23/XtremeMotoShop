@@ -1,11 +1,14 @@
 package com.example.xtrememoto.ui.admin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
@@ -18,7 +21,7 @@ class AdminBikesFragment : Fragment() {
     private lateinit var rvBikes: RecyclerView
     private lateinit var database: FirebaseDatabase
     private val bikeList = mutableListOf<ShopBike>()
-    private val bikeKeys = mutableListOf<String>()
+    private val bikePaths = mutableListOf<String>() // ডিলিট করার জন্য পাথ স্টোর করা
     private lateinit var adapter: AdminBikesAdapter
 
     override fun onCreateView(
@@ -34,46 +37,59 @@ class AdminBikesFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         rvBikes = view.findViewById(R.id.rvAdminBikes)
         val fabAdd = view.findViewById<FloatingActionButton>(R.id.fabAddBike)
+        val toolbar = view.findViewById<Toolbar>(R.id.adminBikesToolbar)
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         rvBikes.layoutManager = LinearLayoutManager(context)
-        adapter = AdminBikesAdapter(bikeList) { key ->
-            deleteBike(key)
+        adapter = AdminBikesAdapter(bikeList) { path ->
+            deleteBike(path)
         }
         rvBikes.adapter = adapter
 
-        fetchBikes()
+        fetchBikesFromAllCategories()
 
         fabAdd.setOnClickListener {
-            // logic to show add bike dialog
-            Toast.makeText(context, "Add Bike Dialog Placeholder", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_myBikeFragment_to_addBikeFragment)
         }
     }
 
-    private fun fetchBikes() {
-        val bikeRef = database.getReference("shop/bikes")
+    private fun fetchBikesFromAllCategories() {
+        // স্ট্রাকচার: shop -> bikes -> categories -> {catID} -> {catName} -> {bikeID}
+        val bikeRef = database.getReference("shop/bikes/categories")
         bikeRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (!isAdded) return
                 bikeList.clear()
-                bikeKeys.clear()
-                for (child in snapshot.children) {
-                    val bike = child.getValue(ShopBike::class.java)
-                    bike?.let {
-                        bikeList.add(it)
-                        bikeKeys.add(child.key ?: "")
+                bikePaths.clear()
+                
+                for (catIdChild in snapshot.children) {
+                    for (catNameChild in catIdChild.children) {
+                        for (bikeChild in catNameChild.children) {
+                            val bike = bikeChild.getValue(ShopBike::class.java)
+                            bike?.let {
+                                bikeList.add(it)
+                                // ডিলিট করার জন্য সম্পূর্ণ পাথ রাখা হচ্ছে
+                                bikePaths.add("shop/bikes/categories/${catIdChild.key}/${catNameChild.key}/${bikeChild.key}")
+                            }
+                        }
                     }
                 }
-                adapter.setKeys(bikeKeys)
+                adapter.setPaths(bikePaths)
                 adapter.notifyDataSetChanged()
             }
-            override fun onCancelled(error: DatabaseError) {}
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("AdminBikes", "Error: ${error.message}")
+            }
         })
     }
 
-    private fun deleteBike(key: String) {
-        database.getReference("shop/bikes").child(key).removeValue().addOnCompleteListener {
+    private fun deleteBike(path: String) {
+        database.getReference(path).removeValue().addOnCompleteListener {
             if (it.isSuccessful) {
-                Toast.makeText(context, "Bike Deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Bike Removed from Store", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -84,14 +100,14 @@ class AdminBikesAdapter(
     private val onDeleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<AdminBikesAdapter.ViewHolder>() {
 
-    private var keys = listOf<String>()
+    private var paths = listOf<String>()
 
-    fun setKeys(newKeys: List<String>) {
-        keys = newKeys
+    fun setPaths(newPaths: List<String>) {
+        paths = newPaths
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvTitle: android.widget.TextView = view.findViewById(R.id.tvOfferTitle) // reuse item_admin_offer for simplicity or create item_admin_bike
+        val tvTitle: android.widget.TextView = view.findViewById(R.id.tvOfferTitle)
         val btnDelete: android.widget.ImageButton = view.findViewById(R.id.btnDeleteOffer)
     }
 
@@ -101,8 +117,9 @@ class AdminBikesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvTitle.text = list[position].name
-        holder.btnDelete.setOnClickListener { onDeleteClick(keys[position]) }
+        val bike = list[position]
+        holder.tvTitle.text = bike.name
+        holder.btnDelete.setOnClickListener { onDeleteClick(paths[position]) }
     }
 
     override fun getItemCount() = list.size

@@ -1,26 +1,45 @@
 package com.example.xtrememoto.ui.bike
 
-import android.app.DatePickerDialog
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.text.InputFilter
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.xtrememoto.R
-import com.example.xtrememoto.model.Bike
-import com.example.xtrememoto.viewmodel.BikeViewModel
+import com.example.xtrememoto.model.BikeSpecs
+import com.example.xtrememoto.model.ShopBike
 import com.google.android.material.button.MaterialButton
-import java.util.Calendar
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 
 class AddBikeFragment : Fragment() {
 
-    private lateinit var viewModel: BikeViewModel
+    private lateinit var database: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
+    private var ivBikePreview: ImageView? = null
+    private var localImagePath: String = ""
+
+    private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri ->
+                ivBikePreview?.setImageURI(uri)
+                ivBikePreview?.alpha = 1.0f
+                localImagePath = saveBikeImageLocally(uri)
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,88 +51,120 @@ class AddBikeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[BikeViewModel::class.java]
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+
+        checkAdminAccess()
 
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
-        val etName = view.findViewById<EditText>(R.id.etName)
-        val etModel = view.findViewById<EditText>(R.id.etModel)
-        val etColor = view.findViewById<EditText>(R.id.etColor)
-        val etCustName = view.findViewById<EditText>(R.id.etCustName)
-        val etEngNum = view.findViewById<EditText>(R.id.etEngNum)
-        val etFrameNum = view.findViewById<EditText>(R.id.etFrameNum)
-        val etPurchase = view.findViewById<EditText>(R.id.etPurchase)
-        val etReg = view.findViewById<EditText>(R.id.etReg)
-        val btnAddBike = view.findViewById<MaterialButton>(R.id.btnAddBike)
+        val cvBikeImage = view.findViewById<MaterialCardView>(R.id.cvBikeImage)
+        ivBikePreview = view.findViewById(R.id.ivBikePreview)
 
-        // Force all input to uppercase
-        val allCapsFilter = arrayOf(InputFilter.AllCaps())
-        listOf(etName, etModel, etColor, etCustName, etEngNum, etFrameNum, etReg).forEach {
-            it.filters = allCapsFilter
-        }
+        val etCatID = view.findViewById<TextInputEditText>(R.id.etCatID)
+        val etCatName = view.findViewById<TextInputEditText>(R.id.etCatName)
+        val etBikeName = view.findViewById<TextInputEditText>(R.id.etBikeName)
+        val etBrand = view.findViewById<TextInputEditText>(R.id.etBrand)
+        val etColors = view.findViewById<TextInputEditText>(R.id.etColors)
+        val etCC = view.findViewById<TextInputEditText>(R.id.etCC)
+        val etPrice = view.findViewById<TextInputEditText>(R.id.etPrice)
+        val etStock = view.findViewById<TextInputEditText>(R.id.etStock)
+        
+        val etSpecEngine = view.findViewById<TextInputEditText>(R.id.etSpecEngine)
+        val etSpecGear = view.findViewById<TextInputEditText>(R.id.etSpecGear)
+        val etSpecBrake = view.findViewById<TextInputEditText>(R.id.etSpecBrake)
+        val etSpecTorque = view.findViewById<TextInputEditText>(R.id.etSpecTorque)
+        val etSpecMileage = view.findViewById<TextInputEditText>(R.id.etSpecMileage)
+        val etSpecPower = view.findViewById<TextInputEditText>(R.id.etSpecPower)
 
-        observeViewModel(etCustName)
+        val btnSave = view.findViewById<MaterialButton>(R.id.btnAddShopBike)
 
-        viewModel.fetchUserName()
+        cvBikeImage?.setOnClickListener { openGallery() }
+        btnBack?.setOnClickListener { findNavController().popBackStack() }
 
-        btnBack.setOnClickListener { findNavController().popBackStack() }
+        btnSave?.setOnClickListener {
+            val catID = etCatID?.text?.toString()?.trim() ?: ""
+            val catName = etCatName?.text?.toString()?.trim()?.lowercase() ?: ""
+            val bikeName = etBikeName?.text?.toString()?.trim() ?: ""
 
-        etPurchase.setOnClickListener { showDatePicker(etPurchase) }
+            if (bikeName.isEmpty() || catID.isEmpty() || catName.isEmpty()) {
+                Toast.makeText(context, "Hierarchy and Name are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-        btnAddBike.setOnClickListener {
-            val bike = Bike(
-                name = etName.text.toString().trim(),
-                model = etModel.text.toString().trim(),
-                color = etColor.text.toString().trim(),
-                custName = etCustName.text.toString().trim(),
-                engNum = etEngNum.text.toString().trim(),
-                frameNum = etFrameNum.text.toString().trim(),
-                purchase = etPurchase.text.toString().trim(),
-                reg = etReg.text.toString().trim()
+            val specs = BikeSpecs(
+                brake = etSpecBrake?.text?.toString()?.trim() ?: "",
+                engine = etSpecEngine?.text?.toString()?.trim() ?: "",
+                gear = etSpecGear?.text?.toString()?.trim() ?: "",
+                mileage = etSpecMileage?.text?.toString()?.trim() ?: "",
+                power = etSpecPower?.text?.toString()?.trim() ?: "",
+                torque = etSpecTorque?.text?.toString()?.trim() ?: ""
             )
 
-            if (validateBike(bike)) {
-                viewModel.addBike(bike)
-            } else {
-                Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
-            }
+            // Matching DB screenshot: colors as Map with numeric string keys
+            val colorMap = etColors?.text?.toString()
+                ?.split(",")
+                ?.map { it.trim() }
+                ?.filter { it.isNotEmpty() }
+                ?.withIndex()
+                ?.associate { (it.index + 1).toString() to it.value }
+
+            val bike = ShopBike(
+                name = bikeName,
+                brand = etBrand?.text?.toString()?.trim()?.uppercase() ?: "",
+                cc = etCC?.text?.toString()?.trim()?.toIntOrNull(),
+                colors = colorMap,
+                img = localImagePath,
+                price = etPrice?.text?.toString()?.trim()?.toLongOrNull(),
+                stock = etStock?.text?.toString()?.trim()?.toIntOrNull(),
+                specs = specs
+            )
+
+            saveBikeToStore(catID, catName, bike)
         }
     }
 
-    private fun observeViewModel(etCustName: EditText) {
-        viewModel.userName.observe(viewLifecycleOwner) { name ->
-            name?.let { etCustName.setText(it.uppercase()) }
-        }
-
-        viewModel.addBikeStatus.observe(viewLifecycleOwner) { status ->
-            when (status) {
-                is BikeViewModel.BikeStatus.Loading -> { /* Show Loading */ }
-                is BikeViewModel.BikeStatus.Success -> {
-                    Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
+    private fun checkAdminAccess() {
+        val uid = auth.currentUser?.uid ?: return
+        database.getReference("users").child(uid).child("role").get()
+            .addOnSuccessListener { snapshot ->
+                if (!isAdded) return@addOnSuccessListener
+                val role = snapshot.value?.toString() ?: ""
+                if (role != "admin") {
+                    Toast.makeText(context, "Admin Access Only", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                 }
-                is BikeViewModel.BikeStatus.Error -> {
-                    Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
-                }
+            }
+    }
+
+    private fun saveBikeToStore(catID: String, catName: String, bike: ShopBike) {
+        val bikeRef = database.getReference("shop/bikes/categories")
+            .child(catID).child(catName)
+        
+        val bikeKey = bikeRef.push().key ?: return
+        bikeRef.child(bikeKey).setValue(bike).addOnCompleteListener {
+            if (it.isSuccessful && isAdded) {
+                Toast.makeText(context, "Bike Added Successfully!", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
             }
         }
     }
 
-    private fun showDatePicker(editText: EditText) {
-        val calendar = Calendar.getInstance()
-        DatePickerDialog(
-            requireContext(),
-            { _, year, month, day ->
-                editText.setText("$year-${month + 1}-$day")
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        imagePickerLauncher.launch(intent)
     }
 
-    private fun validateBike(bike: Bike): Boolean {
-        return !bike.name.isNullOrEmpty() && !bike.model.isNullOrEmpty() &&
-                !bike.color.isNullOrEmpty() && !bike.engNum.isNullOrEmpty() &&
-                !bike.frameNum.isNullOrEmpty() && !bike.reg.isNullOrEmpty()
+    private fun saveBikeImageLocally(uri: Uri): String {
+        val folder = File(requireContext().filesDir, "bike_images")
+        if (!folder.exists()) folder.mkdirs()
+        val file = File(folder, "bike_${System.currentTimeMillis()}.jpg")
+        return try {
+            val inputStream: InputStream? = requireContext().contentResolver.openInputStream(uri)
+            val outputStream = FileOutputStream(file)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+            file.absolutePath
+        } catch (e: Exception) { "" }
     }
 }

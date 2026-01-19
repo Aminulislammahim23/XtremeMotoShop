@@ -25,9 +25,9 @@ class ShopRepository {
                                 id = bikeSnap.key,
                                 name = bikeSnap.child("name").value?.toString() ?: "No Name",
                                 brand = bikeSnap.child("brand").value?.toString() ?: "No Brand",
-                                cc = bikeSnap.child("cc").value?.toString() ?: "0",
-                                price = bikeSnap.child("price").value?.toString() ?: "0",
-                                stock = bikeSnap.child("stock").value?.toString() ?: "0",
+                                cc = bikeSnap.child("cc").value?.toString()?.toIntOrNull(),
+                                price = bikeSnap.child("price").value?.toString()?.toLongOrNull(),
+                                stock = bikeSnap.child("stock").value?.toString()?.toIntOrNull(),
                                 img = bikeSnap.child("img").value?.toString(),
                                 category = categoryName
                             )

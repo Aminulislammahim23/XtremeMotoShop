@@ -54,6 +54,14 @@ class AdminFragment : Fragment() {
             findNavController().navigate(R.id.action_adminFragment_to_adminPartsFragment)
         }
 
+        view.findViewById<MaterialCardView>(R.id.cvManageBookings).setOnClickListener {
+            findNavController().navigate(R.id.action_adminFragment_to_adminBookingFragment)
+        }
+
+        view.findViewById<MaterialCardView>(R.id.cvAllBookings).setOnClickListener {
+            findNavController().navigate(R.id.action_adminFragment_to_adminBookingFragment)
+        }
+
         // Logout
         view.findViewById<Button>(R.id.btnLogout).setOnClickListener {
             auth.signOut()

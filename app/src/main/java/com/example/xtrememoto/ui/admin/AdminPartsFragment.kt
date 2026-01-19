@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.xtrememoto.R
@@ -34,6 +36,11 @@ class AdminPartsFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         rvParts = view.findViewById(R.id.rvAdminParts)
         val fabAdd = view.findViewById<FloatingActionButton>(R.id.fabAddPart)
+        val toolbar = view.findViewById<Toolbar>(R.id.adminPartsToolbar)
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         rvParts.layoutManager = LinearLayoutManager(context)
         adapter = AdminPartsAdapter(partsList) { key ->

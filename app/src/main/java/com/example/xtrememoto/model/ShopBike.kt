@@ -10,14 +10,14 @@ data class BikeSpecs(
 )
 
 data class ShopBike(
-    val id: String? = "",
+    var id: String? = "",
     val name: String? = "",
     val brand: String? = "",
-    val cc: String? = "",
-    val colors: List<String>? = null, // এখন এটি লিস্ট
+    val cc: Int? = null,
+    val colors: Map<String, String>? = null,
     val img: String? = "",
-    val price: String? = "",
-    val stock: String? = "",
+    val price: Long? = null,
+    val stock: Int? = null,
     val specs: BikeSpecs? = null,
     val category: String? = ""
 )

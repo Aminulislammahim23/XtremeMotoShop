@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="@drawable/bg_app">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/adminPartsToolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="100dp"
+            android:paddingTop="32dp"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:navigationIconTint="@color/white"
             app:title="Manage Parts Store"
-            app:titleTextColor="@color/black" />
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -24,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_admin_offer" />
 
