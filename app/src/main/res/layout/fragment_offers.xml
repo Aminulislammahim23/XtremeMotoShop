@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="@drawable/bg_app"
     tools:context=".ui.service.OffersFragment">
 
     <View
         android:id="@+id/headerBg"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@color/white"
+        android:background="#80000000"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -22,6 +22,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="16dp"
         android:src="@drawable/ic_arrow_back"
+        app:tint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exclusive Offers"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -53,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No active offers at the moment"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

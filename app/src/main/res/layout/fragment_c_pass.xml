@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@drawable/bg_app"
     tools:context=".ui.profile.CPassFragment">
 
     <ImageButton
@@ -18,14 +18,14 @@
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Password"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -50,8 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Aminul Islam Mahim"
-        android:textColor="@color/black"
+        android:text="User"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,6 +64,7 @@
         android:layout_marginTop="32dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
+        app:cardBackgroundColor="#CCFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUserName"
         app:layout_constraintVertical_bias="0.0">

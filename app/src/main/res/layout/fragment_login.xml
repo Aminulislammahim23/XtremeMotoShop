@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app">
 
     <ImageView
         android:id="@+id/ivLogo"
@@ -22,6 +23,7 @@
         android:layout_marginTop="16dp"
         android:text="LOG IN TO YOUR XTREME MOTO ACCOUNT"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivLogo" />
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#CCFFFFFF"
         app:layout_constraintTop_toBottomOf="@id/tvLoginTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,13 +130,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:text="Dealer Location" />
+            android:text="Dealer Location"
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:text="Contact us" />
+            android:text="Contact us"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
