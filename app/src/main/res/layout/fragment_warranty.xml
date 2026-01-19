@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="@drawable/bg_app"
     tools:context=".ui.service.WarrantyFragment">
 
     <View
         android:id="@+id/headerBg"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@color/white"
+        android:background="#80000000"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -21,7 +21,7 @@
         android:layout_marginTop="32dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="16dp"
-        android:src="@drawable/ic_arrow_back"
+        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Warranty Policy"
-        android:textColor="@color/black"
+        android:textColor="@color/bottom_nav_text_color"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"

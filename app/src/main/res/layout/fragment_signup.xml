@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@drawable/bg_app"
     tools:context=".ui.auth.SignupFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="SIGN UP FOR XTREME MOTO"
+            android:textColor="@color/bottom_nav_text_color"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -133,14 +134,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? " />
+                android:text="Already have an account? "
+                android:textColor="@color/bottom_nav_text_color" />
 
             <TextView
                 android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login!"
-                android:textColor="@color/suzuki_blue"
+                android:textColor="@color/design_default_color_secondary"
                 android:textStyle="bold" />
         </LinearLayout>
 

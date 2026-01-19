@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_app"
     tools:context=".ui.service.AddServiceBookingFragment">
 
     <ScrollView
@@ -23,7 +23,7 @@
                 android:layout_marginTop="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="16dp"
-                android:src="@drawable/ic_arrow_back"
+                android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Service Booking"
-                android:textColor="@color/black"
+                android:textColor="@color/bottom_nav_text_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -47,10 +47,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:background="#80000000"
                 android:drawableLeft="@drawable/ic_current_location"
                 android:text="Current Location"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tvFindDealer" />
+                android:textColor="@color/bottom_nav_text_color"
+                app:layout_constraintTop_toBottomOf="@id/tvFindDealer"
+                tools:layout_editor_absoluteX="16dp" />
 
             <TextView
                 android:id="@+id/tvOr"
@@ -60,7 +62,8 @@
                 android:text="or"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnCurrentLocation" />
+                app:layout_constraintTop_toBottomOf="@id/btnCurrentLocation"
+                tools:textColor="@color/bottom_nav_text_color" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDivision"
@@ -78,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Select Division"
                     android:inputType="none"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/bottom_nav_text_color" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -97,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Select District"
                     android:inputType="none"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/bottom_nav_text_color" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -130,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Dealer"
-                    android:textColor="@color/black"
+                    android:textColor="@color/bottom_nav_text_color"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -145,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Select Dealer"
                         android:inputType="none"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/bottom_nav_text_color" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -153,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Category/Type"
-                    android:textColor="@color/black"
+                    android:textColor="@color/bottom_nav_text_color"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -168,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Select Category"
                         android:inputType="none"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/bottom_nav_text_color" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -188,7 +191,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Date"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/bottom_nav_text_color" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -202,10 +205,10 @@
                                 android:id="@+id/etDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="15 Jan 2026"
-                                android:focusable="false"
                                 android:clickable="true"
-                                android:textColor="@color/black" />
+                                android:focusable="false"
+                                android:hint="15 Jan 2026"
+                                android:textColor="@color/bottom_nav_text_color" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -234,10 +237,10 @@
                                 android:id="@+id/etTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Time"
-                                android:focusable="false"
                                 android:clickable="true"
-                                android:textColor="@color/black" />
+                                android:focusable="false"
+                                android:hint="Time"
+                                android:textColor="@color/bottom_nav_text_color" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -247,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Note"
-                    android:textColor="@color/black"
+                    android:textColor="@color/bottom_nav_text_color"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -260,10 +263,10 @@
                         android:id="@+id/etNote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Write here"
                         android:gravity="top"
+                        android:hint="Write here"
                         android:minLines="3"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/bottom_nav_text_color" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

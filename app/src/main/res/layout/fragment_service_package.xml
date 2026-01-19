@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@drawable/bg_app"
     tools:context=".ui.service.ServicePackageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back"
+            android:backgroundTint="#EFE8E8"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,7 @@
             android:layout_width="244dp"
             android:layout_height="59dp"
             android:text="Service Packages"
+            android:textColor="@color/bottom_nav_text_color"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -53,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="OUR SERVICE"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Experience the superior reliability and performance of genuine parts and service, ensuring optimal functionality and longevity for your vehicle."
+            android:textColor="@color/bottom_nav_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSuzukiService" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
     tools:context=".ui.service.ServiceHistoryFragment">
 
     <ImageButton
@@ -13,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="16dp"
-        android:src="@drawable/ic_arrow_back"
+        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Service History"
+        android:textColor="@color/bottom_nav_text_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
