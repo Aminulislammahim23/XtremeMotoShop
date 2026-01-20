@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -25,6 +26,11 @@ class TestRideFragment : Fragment() {
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        val btnBookTestRide = view.findViewById<Button>(R.id.btnBookTestRide)
+        btnBookTestRide.setOnClickListener {
+            findNavController().navigate(R.id.action_testRideFragment_to_bookTestRideFragment)
         }
     }
 }

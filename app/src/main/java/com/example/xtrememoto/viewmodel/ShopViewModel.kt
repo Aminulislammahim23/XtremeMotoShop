@@ -45,7 +45,7 @@ class ShopViewModel : ViewModel() {
             _filteredParts.postValue(currentParts)
         } else {
             val filtered = currentParts.filter { 
-                it.category?.equals(category, ignoreCase = true) == true 
+                it.categoryName?.equals(category, ignoreCase = true) == true
             }
             _filteredParts.postValue(filtered)
         }

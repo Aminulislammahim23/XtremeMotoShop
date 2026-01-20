@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_homeFragment_to_offersFragment"
             app:destination="@id/offersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
     </fragment>
 
     <!-- Bike -->
@@ -306,7 +309,12 @@
         android:id="@+id/testRideFragment"
         android:name="com.example.xtrememoto.ui.service.TestRideFragment"
         android:label="fragment_test_ride"
-        tools:layout="@layout/fragment_test_ride" />
+        tools:layout="@layout/fragment_test_ride">
+        <action
+            android:id="@+id/action_testRideFragment_to_bookTestRideFragment"
+            app:destination="@id/bookTestRideFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/adminFragment"
         android:name="com.example.xtrememoto.ui.admin.AdminFragment"
@@ -329,6 +337,9 @@
         <action
             android:id="@+id/action_adminFragment_to_adminBookingFragment"
             app:destination="@id/adminBookingFragment" />
+        <action
+            android:id="@+id/action_adminFragment_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminBikesFragment"
@@ -350,14 +361,15 @@
         android:id="@+id/contactFragment"
         android:name="com.example.xtrememoto.util.ContactFragment"
         android:label="fragment_contact"
-        tools:layout="@layout/fragment_contact" >
-        <action
-            android:id="@+id/action_contactFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/adminBookingFragment"
         android:name="com.example.xtrememoto.ui.admin.AdminBookingFragment"
         android:label="AdminBookingFragment" />
+    <fragment
+        android:id="@+id/adminProfileFragment"
+        android:name="com.example.xtrememoto.ui.admin.AdminProfileFragment"
+        android:label="AdminProfileFragment"
+        tools:layout="@layout/fragment_admin_profile" />
 
 </navigation>

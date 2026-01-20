@@ -185,9 +185,12 @@ class HomeFragment : Fragment() {
         view.findViewById<MaterialCardView>(R.id.cvWarrantyPolicy).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_warrantyFragment)
         }
-        // cvOffers ক্লিক করলে সরাসরি OffersFragment-এ নিয়ে যাবে
         view.findViewById<MaterialCardView>(R.id.cvOffers).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_offersFragment)
+        }
+        // cvTestRide-এ ক্লিক করলে ContactFragment-এ নিয়ে যাবে
+        view.findViewById<MaterialCardView>(R.id.cvTestRide).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_testRideFragment)
         }
     }
 

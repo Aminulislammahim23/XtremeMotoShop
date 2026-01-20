@@ -50,16 +50,19 @@ class ShopRepository {
                     return
                 }
                 for (indexSnap in snapshot.children) {
+                    val catId = indexSnap.key
                     for (categorySnap in indexSnap.children) {
                         val categoryName = categorySnap.key ?: ""
                         for (partSnap in categorySnap.children) {
                             val part = Part(
                                 id = partSnap.key,
                                 brand = partSnap.child("brand").value?.toString(),
-                                price = partSnap.child("price").value?.toString(),
-                                stock = partSnap.child("stock").value?.toString(),
+                                price = partSnap.child("price").value?.toString()?.toLongOrNull(),
+                                stock = partSnap.child("stock").value?.toString()?.toIntOrNull(),
                                 type = partSnap.child("type").value?.toString(),
-                                category = categoryName
+                                categoryId = catId,
+                                categoryName = categoryName,
+                                img = partSnap.child("img").value?.toString()
                             )
                             parts.add(part)
                         }

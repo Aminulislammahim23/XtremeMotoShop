@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
     tools:context=".ui.bike.BikeDetailFragment">
 
     <ImageView
@@ -43,6 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="HONDA"
+        android:textColor="@color/bottom_nav_text_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bike_image" />
 
@@ -64,6 +66,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Being the first is the main goal of the new CBR1000RR-R Fireblade."
+        android:textColor="@color/bottom_nav_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bike_model" />
@@ -106,6 +109,7 @@
         android:layout_marginTop="16dp"
         android:text="Specifications"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/bottom_nav_text_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/color_black" />
 
@@ -147,10 +151,10 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="120$ / week"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/bottom_nav_text_color"
         app:layout_constraintBottom_toTopOf="@+id/add_to_cart_button" />
 
     <Button

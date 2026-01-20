@@ -62,6 +62,11 @@ class AdminFragment : Fragment() {
             findNavController().navigate(R.id.action_adminFragment_to_adminBookingFragment)
         }
 
+        // Edit Profile
+        view.findViewById<Button>(R.id.btnEditProfile).setOnClickListener {
+            findNavController().navigate(R.id.action_adminFragment_to_adminProfileFragment)
+        }
+
         // Logout
         view.findViewById<Button>(R.id.btnLogout).setOnClickListener {
             auth.signOut()

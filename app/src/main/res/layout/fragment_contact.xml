@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@drawable/bg_app"
     tools:context=".util.ContactFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contact Us"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/btnBack"
@@ -40,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Please, Let us know your query"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Provide your information below, and we'll reach out to you soon"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvQueryHeader" />
 
@@ -60,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#CCFFFFFF"
             app:layout_constraintTop_toBottomOf="@+id/tvQuerySubHeader">
 
             <LinearLayout
@@ -72,6 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HEAD OFFICE"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -79,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
                     android:text="Address: G.P F/63,Mohakhali School Road, Dhaka-1212" />
 
                 <TextView
@@ -93,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="CUSTOMER SERVICE"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -105,6 +113,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="Telephone: 01629942052" />
 
                     <ImageButton
@@ -112,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_copy" />
+                        android:src="@drawable/ic_copy"
+                        app:tint="@color/suzuki_blue"/>
                 </LinearLayout>
 
                 <TextView
@@ -120,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="E-MAIL"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -132,6 +143,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="info@xtrememoto.com.bd" />
 
                     <ImageButton
@@ -139,48 +151,72 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_copy" />
+                        android:src="@drawable/ic_copy"
+                        app:tint="@color/suzuki_blue"/>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:hint="Enter Full Name"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
+            app:startIconDrawable="@drawable/ic_profile_placeholder"
+            app:startIconTint="@color/white"
             app:layout_constraintTop_toBottomOf="@id/cvContactInfo">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_placeholder"
-                android:drawablePadding="8dp"
-                android:hint="Enter Full Name" />
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="550dp">
+            android:layout_marginTop="8dp"
+            android:hint="Enter Phone Number"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
+            app:startIconDrawable="@drawable/ic_contact_us"
+            app:startIconTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tilName">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:hint="Enter your Email"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
+            app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tilPhone">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
-                android:drawablePadding="8dp"
-                android:hint="Enter your Email" />
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -189,13 +225,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:hint="Select Bike Model"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tilEmail">
 
             <AutoCompleteTextView
+                android:id="@+id/actBikeModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:text="Select Bike Model" />
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -204,27 +244,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:hint="Select Bike Color"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tilBikeModel">
 
             <AutoCompleteTextView
+                android:id="@+id/actBikeColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:text="Select Bike Color" />
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNote"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:hint="Write here"
+            app:hintTextColor="@color/white"
+            app:boxStrokeColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tilBikeColor">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNote"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:gravity="top"
-                android:hint="Write here" />
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -232,17 +281,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/suzuki_blue"
             android:text="Submit"
-            app:layout_constraintTop_toBottomOf="@id/tilNote" />
+            app:layout_constraintTop_toBottomOf="@id/tilNote"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_contact_us"
-            android:drawablePadding="8dp"
-            android:hint="Enter Phone Number"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="497dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -27,7 +27,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Admin: Add Shop Bike"
+            android:text="Add Your Bike"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -36,11 +36,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/btnBack" />
 
-        <!-- Image Selection Card -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvBikeImage"
+            android:id="@+id/cvForm"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             app:cardBackgroundColor="#20FFFFFF"
             app:cardCornerRadius="16dp"
@@ -49,114 +48,38 @@
             app:strokeWidth="1dp"
             app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/ivBikePreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_bike_placeholder"
-                    android:alpha="0.6"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_add_circle"
-                        app:tint="@color/white" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Tap to select image"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </FrameLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="#20FFFFFF"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="#40FFFFFF"
-            app:strokeWidth="1dp"
-            app:layout_constraintTop_toBottomOf="@id/cvBikeImage">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Store Hierarchy &amp; Info"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12dp">
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="4dp"
-                        android:hint="Cat. ID (e.g. 1)"
-                        app:hintTextColor="@color/white"
-                        app:boxStrokeColor="@color/white">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etCatID"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:textColor="@color/white" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="Bike Name (e.g. TVS)"
+                    app:hintTextColor="@color/white"
+                    app:boxStrokeColor="@color/white">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:layout_marginStart="4dp"
-                        android:hint="Cat. Name (e.g. sports)"
-                        app:hintTextColor="@color/white"
-                        app:boxStrokeColor="@color/white">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etCatName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Bike Name"
+                    android:hint="Model (e.g. WEGOO)"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etBikeName"
+                        android:id="@+id/etModel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -167,11 +90,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Brand"
+                    android:hint="Color"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etBrand"
+                        android:id="@+id/etColor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -182,75 +105,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Colors (comma separated)"
+                    android:hint="Registration Number"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etColors"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="e.g. Racing Blue, Dark Knight"
-                        android:textColor="@color/white" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="4dp"
-                        android:hint="CC"
-                        app:hintTextColor="@color/white"
-                        app:boxStrokeColor="@color/white">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etCC"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:textColor="@color/white" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        android:hint="Price"
-                        app:hintTextColor="@color/white"
-                        app:boxStrokeColor="@color/white">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etPrice"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:textColor="@color/white" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Specifications"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="Engine"
-                    app:hintTextColor="@color/white"
-                    app:boxStrokeColor="@color/white">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecEngine"
+                        android:id="@+id/etReg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -261,11 +120,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Gear"
+                    android:hint="Engine Number"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecGear"
+                        android:id="@+id/etEngNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -276,11 +135,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Brake"
+                    android:hint="Frame Number"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecBrake"
+                        android:id="@+id/etFrameNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -291,11 +150,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Torque"
+                    android:hint="Purchase Date (e.g. 2026-1-1)"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecTorque"
+                        android:id="@+id/etPurchase"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white" />
@@ -306,44 +165,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="Mileage"
+                    android:hint="Customer Name"
                     app:hintTextColor="@color/white"
                     app:boxStrokeColor="@color/white">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecMileage"
+                        android:id="@+id/etCustName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Power"
-                    app:hintTextColor="@color/white"
-                    app:boxStrokeColor="@color/white">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSpecPower"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Stock"
-                    app:hintTextColor="@color/white"
-                    app:boxStrokeColor="@color/white">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etStock"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -351,12 +179,12 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddShopBike"
+            android:id="@+id/btnSaveBike"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/suzuki_blue"
-            android:text="Save to Shop Store"
+            android:text="Save Bike"
             android:textAllCaps="true"
             android:textSize="16sp"
             app:cornerRadius="12dp"
