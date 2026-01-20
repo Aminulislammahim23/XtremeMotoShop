@@ -216,6 +216,9 @@
         <action
             android:id="@+id/action_profileFragment_to_cPassFragment"
             app:destination="@id/cPassFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
     </fragment>
 
     <fragment

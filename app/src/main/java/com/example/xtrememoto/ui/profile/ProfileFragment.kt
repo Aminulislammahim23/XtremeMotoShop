@@ -80,6 +80,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_cPassFragment)
         }
 
+        view.findViewById<MaterialCardView>(R.id.cvContactUs).setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_contactFragment)
+        }
+
         // Logout
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {

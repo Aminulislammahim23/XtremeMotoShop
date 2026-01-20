@@ -34,8 +34,10 @@ class PartsFragment : Fragment() {
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         val tvNoData = view.findViewById<TextView>(R.id.tvNoData)
 
-        // RecyclerView Setup
-        partAdapter = PartAdapter(emptyList())
+        // RecyclerView Setup with Add to Cart callback
+        partAdapter = PartAdapter(emptyList()) { part ->
+            viewModel.addToCart(part)
+        }
         rvParts.layoutManager = GridLayoutManager(requireContext(), 2)
         rvParts.adapter = partAdapter
 
@@ -53,6 +55,12 @@ class PartsFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.cartSuccess.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                Toast.makeText(context, "Added to cart successfully!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Chip selection logic

@@ -26,7 +26,9 @@ class PartsFragment : Fragment() {
 
         // RecyclerView Setup
         val rvParts = view.findViewById<RecyclerView>(R.id.rvPartsList) ?: return view
-        partAdapter = PartAdapter(emptyList())
+        partAdapter = PartAdapter(emptyList()) { part ->
+            viewModel.addToCart(part)
+        }
         rvParts.layoutManager = GridLayoutManager(requireContext(), 2)
         rvParts.adapter = partAdapter
 
@@ -37,6 +39,12 @@ class PartsFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.cartSuccess.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                Toast.makeText(context, "Added to cart", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.fetchAllParts()

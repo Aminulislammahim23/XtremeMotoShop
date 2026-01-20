@@ -3,12 +3,15 @@ package com.example.xtrememoto.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.xtrememoto.model.CartItem
 import com.example.xtrememoto.model.Part
 import com.example.xtrememoto.model.ShopBike
+import com.example.xtrememoto.repository.CartRepository
 import com.example.xtrememoto.repository.ShopRepository
 
 class ShopViewModel : ViewModel() {
     private val repository = ShopRepository()
+    private val cartRepository = CartRepository()
 
     private val _bikes = MutableLiveData<List<ShopBike>>()
     val bikes: LiveData<List<ShopBike>> get() = _bikes
@@ -22,6 +25,9 @@ class ShopViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
+    private val _cartSuccess = MutableLiveData<Boolean>()
+    val cartSuccess: LiveData<Boolean> get() = _cartSuccess
+
     fun fetchAllShopBikes() {
         repository.getAllShopBikes(
             onSuccess = { _bikes.postValue(it) },
@@ -33,7 +39,7 @@ class ShopViewModel : ViewModel() {
         repository.getAllParts(
             onSuccess = { 
                 _parts.postValue(it)
-                _filteredParts.postValue(it) // ডিফল্টভাবে সব দেখাবে
+                _filteredParts.postValue(it) 
             },
             onError = { _error.postValue(it) }
         )
@@ -49,5 +55,19 @@ class ShopViewModel : ViewModel() {
             }
             _filteredParts.postValue(filtered)
         }
+    }
+
+    fun addToCart(part: Part) {
+        val cartItem = CartItem(
+            partId = part.id,
+            partName = part.type,
+            price = part.price?.toString(),
+            imageUrl = part.img,
+            quantity = 1
+        )
+        cartRepository.addToCart(cartItem, 
+            onSuccess = { _cartSuccess.postValue(true) },
+            onError = { _error.postValue(it) }
+        )
     }
 }
